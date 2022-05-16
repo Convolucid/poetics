@@ -147,7 +147,7 @@ export default class Subject
                 this.meshArray[i].position.z += Math.sin(experience.time.elapsed * 0.002) * 0.003
             }
 
-        this.effects.update(this.meshArray[i]);
+            this.effects.update(this.meshArray[i]);
 
         }
 
