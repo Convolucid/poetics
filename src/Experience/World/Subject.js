@@ -39,10 +39,6 @@ export default class Subject
             if(child instanceof THREE.Mesh)
             {
                 this.meshArray.push(child)
-                child.material.metalness = 1
-                child.material.roughness = 0.3
-                child.material.transparent = true
-
             }
         })
 
@@ -58,6 +54,7 @@ export default class Subject
             this.meshArray[i].material.metalness = 1
             this.meshArray[i].material.roughness = 0.3
             this.meshArray[i].material.transparent = true
+            this.meshArray[i].randomMovementModifier = Math.random()
 
             this.setAsRaycastObject(this.meshArray[i])
 
