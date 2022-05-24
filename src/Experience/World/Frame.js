@@ -19,7 +19,7 @@ export default class Frame
 
     setGeometry()
     {
-        this.geometry = new THREE.CircleGeometry(5, 64)
+        this.geometry = new THREE.PlaneGeometry(50, 50)
     }
 
     setTextures()
@@ -50,7 +50,7 @@ export default class Frame
     setMesh()
     {
         this.mesh = new THREE.Mesh(this.geometry, this.material)
-        this.mesh.rotation.x = - Math.PI * 0.5
+        // this.mesh.rotation.x = - Math.PI * 0.5
         this.mesh.receiveShadow = true
         this.scene.add(this.mesh)
     }
