@@ -141,10 +141,11 @@ export default class Subject
             if(this.meshArray[i].clickActivated === false)
             {
 
+                let randomMovement = this.meshArray[i].randomMovementModifier
 
-                this.meshArray[i].position.x += Math.sin(experience.time.elapsed * 0.001) * 0.001
-                this.meshArray[i].position.y += Math.cos(experience.time.elapsed * 0.0004) * 0.002
-                this.meshArray[i].position.z += Math.sin(experience.time.elapsed * 0.002) * 0.003
+                this.meshArray[i].position.x += Math.sin(experience.time.elapsed * 0.001 * randomMovement) * 0.0005 * randomMovement
+                this.meshArray[i].position.y += Math.cos(experience.time.elapsed * 0.0007 * randomMovement) * 0.001 * randomMovement
+                this.meshArray[i].position.z += Math.sin(experience.time.elapsed * 0.002 * randomMovement) * 0.002 * randomMovement
             }
 
             this.effects.update(this.meshArray[i]);

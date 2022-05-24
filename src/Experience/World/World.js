@@ -28,9 +28,9 @@ export default class World
 
     update()
     {
-        if(this.letterO)
+        if(this.subject)
         {
-        this.letterO.update()
+        this.subject.update()
         }
     }
 }
