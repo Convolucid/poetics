@@ -28,7 +28,7 @@ export default class Camera
             35,
             this.sizes.width / this.sizes.height,
             0.1, 
-            100
+            150
         )
         this.instance.position.set(0, 0, 50)
         this.scene.add(this.instance)
