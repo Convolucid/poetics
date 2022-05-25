@@ -104,7 +104,6 @@ void main()
 
     float elevation = sin(modelPosition.x * uBigWavesFrequency.x + uTime * uBigWavesSpeed) * 
                       cos(modelPosition.y * uBigWavesFrequency.y + uTime * uBigWavesSpeed) * 
-                      sin(modelPosition.z * uBigWavesFrequency.z + uTime * uBigWavesSpeed) * 
                       uBigWavesElevation;
 
     for(float i = 1.0; i <= uSmallWavesIterations; i++)
@@ -114,8 +113,6 @@ void main()
 
     modelPosition.z = uPosition.z;
 
-    modelPosition.y += elevation + normal.y;
-    modelPosition.x += elevation + normal.x;
     modelPosition.z += elevation + normal.z;
 
 

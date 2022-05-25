@@ -28,14 +28,14 @@ export default class Frame
 
     setGeometry()
     {
-        this.geometry = new THREE.PlaneGeometry(70, 70, 256, 256)
+        this.geometry = new THREE.PlaneGeometry(100, 100, 256, 256)
     }
 
 
     setMaterial()
     {
-        this.debugObject.depthColor = '#689cbb'
-        this.debugObject.surfaceColor = '#cfcfcf'
+        this.debugObject.depthColor = '#568199'
+        this.debugObject.surfaceColor = '#d2b6b6'
 
         this.material = new THREE.ShaderMaterial(
             {
@@ -47,14 +47,14 @@ export default class Frame
 
                     uPosition: { value: new THREE.Vector3( 0, 0, -5) },
         
-                    uBigWavesElevation: { value: 2.5 },
-                    uBigWavesFrequency: { value: new THREE.Vector3(0.1, 0.2, 1.0) },
-                    uBigWavesSpeed: { value: 0.05 },
+                    uBigWavesElevation: { value: 1.5 },
+                    uBigWavesFrequency: { value: new THREE.Vector3(0.07, 0.15, 1.0) },
+                    uBigWavesSpeed: { value: 0.1 },
         
-                    uSmallWavesElevation: { value: 0.15 },
-                    uSmallWavesFrequency: { value: 3 },
+                    uSmallWavesElevation: { value: 0.35 },
+                    uSmallWavesFrequency: { value: 0.3 },
                     uSmallWavesSpeed: { value: 0.2 },
-                    uSmallWavesIterations: { value: 4 },
+                    uSmallWavesIterations: { value: 1 },
         
                     uDepthColor: { value: new THREE.Color(this.debugObject.depthColor)},
                     uSurfaceColor: { value: new THREE.Color(this.debugObject.surfaceColor)},
@@ -84,7 +84,7 @@ export default class Frame
         this.debugFolder.add(this.material.uniforms.uColorOffset, 'value').min(0).max(2).step(0.001).name('uColorOffset')
         this.debugFolder.add(this.material.uniforms.uColorMultiplier, 'value').min(0).max(10).step(0.001).name('uColorMultiplier')
         this.debugFolder.add(this.material.uniforms.uSmallWavesElevation, 'value').min(0).max(1).step(0.001).name('uSmallWavesElevation')
-        this.debugFolder.add(this.material.uniforms.uSmallWavesFrequency, 'value').min(0).max(30).step(0.001).name('uSmallWavesFrequency')
+        this.debugFolder.add(this.material.uniforms.uSmallWavesFrequency, 'value').min(0).max(2).step(0.001).name('uSmallWavesFrequency')
         this.debugFolder.add(this.material.uniforms.uSmallWavesSpeed, 'value').min(0).max(4).step(0.001).name('uSmallWavesSpeed')
         this.debugFolder.add(this.material.uniforms.uSmallWavesIterations, 'value').min(0).max(5).step(1).name('uSmallWavesIterations')
     }
