@@ -11,6 +11,16 @@ export default class Sizes extends EventEmitter
         this.height = window.innerHeight
         this.pixelRatio = Math.min(window.devicePixelRatio, 2)
 
+        // Media query trigger for phone screens
+        if(this.width < 786)
+        {
+            this.responsiveXS = true
+        }
+        else
+        {
+            this.responsiveXS = false
+        }
+
         // Resize event
         window.addEventListener('resize', () => {
             this.width = window.innerWidth

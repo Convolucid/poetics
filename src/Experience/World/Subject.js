@@ -73,6 +73,7 @@ export default class Subject
         this.model.movementModifierZ = 1.0
         this.model.speedModifier = 1.0
 
+        this.resize()
 
         this.scene.add(this.model)
 
@@ -96,19 +97,25 @@ export default class Subject
 
     resize()
     {
-        // Adjust Subject starting position
-        if(this.sizes.responsiveXS === true)
+
+
+        // Adjust Subject starting position based on XS responsive breakpoint
+        for(let i=0; i < this.meshArray.length; i++)
         {
-            for(let i=6; i < this.meshArray.length; i++)
+            if(this.sizes.responsiveXS === true)
             {
-                this.meshArray[i].position.x = this.meshArray[i].startingPositionX - 5
-                this.meshArray[i].position.y = this.meshArray[i].startingPositionY - 5
+                if(i <= 5)
+                {
+                    this.meshArray[i].position.x = this.meshArray[i].startingPositionX + 5
+                    this.meshArray[i].position.y = this.meshArray[i].startingPositionY + 2.5
+                }
+                else
+                {
+                    this.meshArray[i].position.x = this.meshArray[i].startingPositionX - 5
+                    this.meshArray[i].position.y = this.meshArray[i].startingPositionY - 2.5
+                }
             }
-        }
-        else
-        {
-            for(let i=6; i < this.meshArray.length; i++)
-            {
+            else{
                 this.meshArray[i].position.x = this.meshArray[i].startingPositionX
                 this.meshArray[i].position.y = this.meshArray[i].startingPositionY
             }
