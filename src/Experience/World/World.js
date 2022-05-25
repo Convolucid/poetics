@@ -26,6 +26,11 @@ export default class World
 
     }
 
+    resize()
+    {
+        this.subject.resize()
+    }
+
     update()
     {
         if(this.subject)

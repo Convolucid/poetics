@@ -12,6 +12,7 @@ export default class Subject
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.resources = this.experience.resources
+        this.sizes = this.experience.sizes
         this.time = this.experience.time
         this.debug = this.experience.debug
 
@@ -58,6 +59,10 @@ export default class Subject
             // Set individual random modifiers to movement
             this.meshArray[i].randomMovementModifier = Math.random()
             this.meshArray[i].randomSpeedModifier = Math.random()
+
+            // Get starting position
+            this.meshArray[i].startingPositionX = this.meshArray[i].position.x
+            this.meshArray[i].startingPositionY = this.meshArray[i].position.y
         };
 
         this.meshArray[0].material.metalness = 1
@@ -67,6 +72,7 @@ export default class Subject
         this.model.movementModifierY = 1.0
         this.model.movementModifierZ = 1.0
         this.model.speedModifier = 1.0
+
 
         this.scene.add(this.model)
 
@@ -88,6 +94,26 @@ export default class Subject
         this.experience.raycaster.raycastObjects.push(object)
     }
 
+    resize()
+    {
+        // Adjust Subject starting position
+        if(this.sizes.responsiveXS === true)
+        {
+            for(let i=6; i < this.meshArray.length; i++)
+            {
+                this.meshArray[i].position.x = this.meshArray[i].startingPositionX - 5
+                this.meshArray[i].position.y = this.meshArray[i].startingPositionY - 5
+            }
+        }
+        else
+        {
+            for(let i=6; i < this.meshArray.length; i++)
+            {
+                this.meshArray[i].position.x = this.meshArray[i].startingPositionX
+                this.meshArray[i].position.y = this.meshArray[i].startingPositionY
+            }
+        }
+    }
 
     update()
     {
