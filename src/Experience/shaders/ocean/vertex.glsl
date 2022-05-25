@@ -112,7 +112,7 @@ void main()
         elevation -= abs(cnoise(vec3(modelPosition.xyz * uSmallWavesFrequency * i + uTime * uSmallWavesSpeed)) * uSmallWavesElevation / i);
     }
 
-    modelPosition.y = uPosition.y;
+    modelPosition.z = uPosition.z;
 
     modelPosition.y += elevation + normal.y;
     modelPosition.x += elevation + normal.x;

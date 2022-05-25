@@ -37,5 +37,10 @@ export default class World
         {
         this.subject.update()
         }
+
+        if(this.frame)
+        {
+        this.frame.update()
+        }
     }
 }
