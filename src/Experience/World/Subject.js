@@ -43,24 +43,21 @@ export default class Subject
             }
         })
 
-        // Set onclick event to meshes and set activation to false
+        // Set attributes to individual meshes
         for(let i = 0; i < this.meshArray.length; i++)
         {
+            // Set onclick event to meshes and set activation to false
             this.meshArray[i].clickActivated = false
             this.meshArray[i].onClick = () =>
             {
                 this.clickActivation(this.meshArray[i])
             }
 
-            // this.meshArray[i].material.metalness = 1
-            // this.meshArray[i].material.roughness = 0.3
-            // this.meshArray[i].material.transparent = true
-            this.meshArray[i].randomMovementModifier = Math.random()
-            this.meshArray[i].randomSpeedModifier = Math.random()
-
             this.setAsRaycastObject(this.meshArray[i])
 
-
+            // Set individual random modifiers to movement
+            this.meshArray[i].randomMovementModifier = Math.random()
+            this.meshArray[i].randomSpeedModifier = Math.random()
         };
 
         this.meshArray[0].material.metalness = 1
@@ -92,48 +89,6 @@ export default class Subject
     }
 
 
-    setAnimation()
-    {
-        this.animation = {}
-        this.animation.mixer = new THREE.AnimationMixer(this.model)
-        
-        this.animation.actions = {}
-        this.animation.actions.idle = this.animation.mixer.clipAction(this.resource.animations[0])
-        this.animation.actions.walking = this.animation.mixer.clipAction(this.resource.animations[1])
-        this.animation.actions.running = this.animation.mixer.clipAction(this.resource.animations[2])
-
-        this.animation.actions.current = this.animation.actions.idle
-        this.animation.actions.current.play()
-
-        this.animation.play = (name) =>
-        {
-            const newAction = this.animation.actions[name]
-            const oldAction = this.animation.actions.current
-
-            newAction.reset()
-            newAction.play()
-            newAction.crossFadeFrom(oldAction, 1)
-
-            this.animation.actions.current = newAction
-        }
-
-        // Debug
-        if(this.debug.active)
-        {
-            const debugObject = {
-                playIdle: () => { this.animation.play('idle') },
-                playWalking: () => { this.animation.play('walking') },
-                playRunning: () => { this.animation.play('running') }
-            }
-            this.debugFolder.add(debugObject, 'playIdle')
-            this.debugFolder.add(debugObject, 'playWalking')
-            this.debugFolder.add(debugObject, 'playRunning')
-        }
-    }
-
-
-
-
     update()
     {
         for(let i = 0; i < this.meshArray.length; i++)
@@ -141,27 +96,19 @@ export default class Subject
 
             if(this.meshArray[i].clickActivated === true)
             {
-                
-
                 // let tweenStartTime = this.meshArray[0].tweenStartTime
                 let tweenElapsedTime = this.experience.time.current - this.meshArray[i].tweenStartTime;
-
 
                 if(tweenElapsedTime > 200)
                 {
                     this.meshArray[i].tweenStartTime = this.experience.time.current
 
                     this.effects.trailingMesh(this.meshArray[i])
-
-                }
-
-
-            
+                }            
             }
 
             if(this.meshArray[i].clickActivated === false)
             {
-
                 let randomMovement = this.meshArray[i].randomMovementModifier
                 let randomSpeed = this.meshArray[i].randomSpeedModifier
 
@@ -171,11 +118,7 @@ export default class Subject
             }
 
             this.effects.update(this.meshArray[i]);
-
         }
-
-
-
     }
 
 
