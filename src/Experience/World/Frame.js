@@ -65,28 +65,30 @@ export default class Frame
         )
 
         // Debug
-        this.debugFolder.add(this.material.uniforms.uBigWavesElevation, 'value').min(0).max(4).step(0.001).name('uBigWavesElevation')
-        this.debugFolder.add(this.material.uniforms.uBigWavesFrequency.value, 'x').min(0).max(1).step(0.001).name('uBigWavesFrequencyX')
-        this.debugFolder.add(this.material.uniforms.uBigWavesFrequency.value, 'y').min(0).max(1).step(0.001).name('uBigWavesFrequencyY')
-        this.debugFolder.add(this.material.uniforms.uBigWavesSpeed, 'value').min(0).max(2).step(0.001).name('uBigWavesSpeed')
-        this.debugFolder
-            .addColor(this.debugObject, 'surfaceColor').name('surfaceColor')
-            .onChange(() =>
-            {
-                this.material.uniforms.uSurfaceColor.value.set(this.debugObject.surfaceColor)
-            })
-        this.debugFolder
-            .addColor(this.debugObject, 'depthColor').name('depthColor')
-            .onChange(() =>
-            {
-                this.material.uniforms.uDepthColor.value.set(this.debugObject.depthColor)
-            })
-        this.debugFolder.add(this.material.uniforms.uColorOffset, 'value').min(0).max(2).step(0.001).name('uColorOffset')
-        this.debugFolder.add(this.material.uniforms.uColorMultiplier, 'value').min(0).max(10).step(0.001).name('uColorMultiplier')
-        this.debugFolder.add(this.material.uniforms.uSmallWavesElevation, 'value').min(0).max(1).step(0.001).name('uSmallWavesElevation')
-        this.debugFolder.add(this.material.uniforms.uSmallWavesFrequency, 'value').min(0).max(2).step(0.001).name('uSmallWavesFrequency')
-        this.debugFolder.add(this.material.uniforms.uSmallWavesSpeed, 'value').min(0).max(4).step(0.001).name('uSmallWavesSpeed')
-        this.debugFolder.add(this.material.uniforms.uSmallWavesIterations, 'value').min(0).max(5).step(1).name('uSmallWavesIterations')
+        if(this.debug.active){
+            this.debugFolder.add(this.material.uniforms.uBigWavesElevation, 'value').min(0).max(4).step(0.001).name('uBigWavesElevation')
+            this.debugFolder.add(this.material.uniforms.uBigWavesFrequency.value, 'x').min(0).max(1).step(0.001).name('uBigWavesFrequencyX')
+            this.debugFolder.add(this.material.uniforms.uBigWavesFrequency.value, 'y').min(0).max(1).step(0.001).name('uBigWavesFrequencyY')
+            this.debugFolder.add(this.material.uniforms.uBigWavesSpeed, 'value').min(0).max(2).step(0.001).name('uBigWavesSpeed')
+            this.debugFolder
+                .addColor(this.debugObject, 'surfaceColor').name('surfaceColor')
+                .onChange(() =>
+                {
+                    this.material.uniforms.uSurfaceColor.value.set(this.debugObject.surfaceColor)
+                })
+            this.debugFolder
+                .addColor(this.debugObject, 'depthColor').name('depthColor')
+                .onChange(() =>
+                {
+                    this.material.uniforms.uDepthColor.value.set(this.debugObject.depthColor)
+                })
+            this.debugFolder.add(this.material.uniforms.uColorOffset, 'value').min(0).max(2).step(0.001).name('uColorOffset')
+            this.debugFolder.add(this.material.uniforms.uColorMultiplier, 'value').min(0).max(10).step(0.001).name('uColorMultiplier')
+            this.debugFolder.add(this.material.uniforms.uSmallWavesElevation, 'value').min(0).max(1).step(0.001).name('uSmallWavesElevation')
+            this.debugFolder.add(this.material.uniforms.uSmallWavesFrequency, 'value').min(0).max(2).step(0.001).name('uSmallWavesFrequency')
+            this.debugFolder.add(this.material.uniforms.uSmallWavesSpeed, 'value').min(0).max(4).step(0.001).name('uSmallWavesSpeed')
+            this.debugFolder.add(this.material.uniforms.uSmallWavesIterations, 'value').min(0).max(5).step(1).name('uSmallWavesIterations')
+        }
     }
 
     setMesh()
