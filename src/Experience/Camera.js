@@ -30,7 +30,10 @@ export default class Camera
             0.1, 
             150
         )
-        this.instance.position.set(0, 0, 50)
+        this.instance.aspect = this.sizes.width / this.sizes.height
+        this.instance.startingPositionZ = 70
+        this.instance.position.set(0, 0, this.instance.startingPositionZ / this.instance.aspect)
+
         this.scene.add(this.instance)
     }
 
@@ -48,6 +51,7 @@ export default class Camera
     resize()
     {
         this.instance.aspect = this.sizes.width / this.sizes.height
+        this.instance.position.z = this.instance.startingPositionZ / this.instance.aspect
         this.instance.updateProjectionMatrix()
     }
 
