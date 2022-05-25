@@ -66,7 +66,7 @@ export default class Subject
         };
 
         this.meshArray[0].material.metalness = 1
-        this.meshArray[0].material.roughness = 0.3
+        this.meshArray[0].material.roughness = 0.2
         this.meshArray[0].material.transparent = true
         this.model.movementModifierX = 1.0
         this.model.movementModifierY = 1.0
