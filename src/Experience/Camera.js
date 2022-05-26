@@ -90,6 +90,9 @@ export default class Camera
         {
         // console.log(section)
         }
+
+        this.instance.position.y = 
+            (this.instance.startingPositionY / this.instance.aspect) - this.controls.scrollY * 0.005
     }
 
     update()
