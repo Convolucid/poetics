@@ -21,8 +21,9 @@ export default class Camera
         }
 
         this.setInstance()
+        this.scroll()
         // this.setOrbitControls()
-        this.setAspectPosition()
+        this.resize()
     }
 
     setInstance()
@@ -37,33 +38,15 @@ export default class Camera
         this.scene.add(this.instance)
     }
 
-    setAspectPosition()
+    setPosition()
     {
         this.instance.aspect = this.sizes.width / this.sizes.height
 
-
-
-        if(this.sizes.responsiveXS === true)
-        {
-            this.instance.startingPositionY = -6
-            this.instance.startingPositionZ = 45
-            this.instance.position.set(
-                0, 
-                this.instance.startingPositionY / this.instance.aspect, 
-                this.instance.startingPositionZ / this.instance.aspect
-            )
-        }
-        else
-        {
-            this.instance.startingPositionY = -3
-            this.instance.startingPositionZ = 70
-            this.instance.position.set(
-                0, 
-                this.instance.startingPositionY / this.instance.aspect, 
-                this.instance.startingPositionZ / this.instance.aspect
-            )
-        }
-
+        this.instance.position.set(
+            0, 
+            (this.instance.startingPositionY / this.instance.aspect) - this.scrollPositionY, 
+            this.instance.startingPositionZ / this.instance.aspect
+        )
     }
 
     setOrbitControls()
@@ -80,7 +63,18 @@ export default class Camera
 
     resize()
     {
-        this.setAspectPosition()
+        if(this.sizes.responsiveXS === true)
+        {
+            this.instance.startingPositionY = -6
+            this.instance.startingPositionZ = 45
+        }
+        else
+        {
+            this.instance.startingPositionY = -3
+            this.instance.startingPositionZ = 70
+        }
+
+        this.setPosition()
         this.instance.updateProjectionMatrix()
     }
 
@@ -91,8 +85,12 @@ export default class Camera
         // console.log(section)
         }
 
-        this.instance.position.y = 
-            (this.instance.startingPositionY / this.instance.aspect) - this.controls.scrollY * 0.005
+        this.scrollPositionY = this.controls.scrollY * 0.005
+
+        // this.instance.rotation.x = 
+        //     - Math.PI * this.controls.scrollY * 0.00005
+        
+        this.setPosition()
     }
 
     update()
