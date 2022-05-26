@@ -22,7 +22,6 @@ export default class Camera
 
         this.setInstance()
         this.scroll()
-        // this.setOrbitControls()
         this.resize()
     }
 
@@ -49,18 +48,6 @@ export default class Camera
         )
     }
 
-    setOrbitControls()
-    {
-        this.orbitControls = new OrbitControls(this.instance, this.canvas)
-        this.orbitControls.enabled = false
-        this.orbitControls.enableDamping = true
-
-        if(this.debug.active)
-        {
-            this.debugFolder.add(this.orbitControls, 'enabled').name('Orbit Controls')
-        }
-    }
-
     resize()
     {
         if(this.sizes.responsiveXS === true)
@@ -80,24 +67,71 @@ export default class Camera
 
     scroll(section)
     {
-        if(section)
+        switch(section)
         {
-        // console.log(section)
+            case 1:
+                this.section1()
+                break;
+            case 2:
+                this.section2()
+                break;
+            case 3:
+                this.section3()
+                break;
         }
 
         this.scrollPositionY = this.controls.scrollY * 0.005
-
-        // this.instance.rotation.x = 
-        //     - Math.PI * this.controls.scrollY * 0.00005
-        
+       
         this.setPosition()
     }
 
     update()
     {
-        // if(this.orbitControls.enabled)
-        // {
-        //     this.orbitControls.update()
-        // }
+
+    }
+
+
+
+    // Section Transformations
+    section1()
+    {
+        gsap.to(
+            this.instance.rotation,
+            {
+                duration: 1.5,
+                ease: 'power2.out',
+                x: 0,
+                y: 0,
+                z: 0
+            }
+        )
+    }
+
+    section2()
+    {
+        gsap.to(
+            this.instance.rotation,
+            {
+                duration: 1.5,
+                ease: 'power2.out',
+                x: -1.1,
+                y: 0,
+                z: 0
+            }
+        )
+    }
+
+    section3()
+    {
+        gsap.to(
+            this.instance.rotation,
+            {
+                duration: 1.5,
+                ease: 'power2.out',
+                x: -0.9,
+                y: 0,
+                z: 1.6
+            }
+        )
     }
 }
