@@ -64,7 +64,6 @@ export default class Camera
             )
         }
 
-        // this.instance.lookAt(0,-3,0)
     }
 
     setOrbitControls()
@@ -75,7 +74,7 @@ export default class Camera
 
         if(this.debug.active)
         {
-            this.debugFolder.add(this.controls, 'enabled').name('Orbit Controls')
+            this.debugFolder.add(this.orbitControls, 'enabled').name('Orbit Controls')
         }
     }
 
@@ -95,6 +94,9 @@ export default class Camera
 
     update()
     {
-        // this.orbitControls.update()
+        // if(this.orbitControls.enabled)
+        // {
+        //     this.orbitControls.update()
+        // }
     }
 }
