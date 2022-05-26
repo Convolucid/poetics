@@ -99,7 +99,7 @@ export default class Camera
             this.instance.rotation,
             {
                 duration: 1.5,
-                ease: 'power2.out',
+                ease: 'power2.inOut',
                 x: 0,
                 y: 0,
                 z: 0
@@ -113,7 +113,7 @@ export default class Camera
             this.instance.rotation,
             {
                 duration: 1.5,
-                ease: 'power2.out',
+                ease: 'power2.inOut',
                 x: -1.1,
                 y: 0,
                 z: 0
@@ -127,7 +127,7 @@ export default class Camera
             this.instance.rotation,
             {
                 duration: 1.5,
-                ease: 'power2.out',
+                ease: 'power2.inOut',
                 x: -0.9,
                 y: 0,
                 z: 1.6

@@ -69,8 +69,8 @@ export default class Subject
         this.meshArray[0].material.roughness = 0.2
         this.meshArray[0].material.transparent = true
         this.model.movementModifierX = 1.0
-        this.model.movementModifierY = 1.0
-        this.model.movementModifierZ = 1.0
+        this.model.movementModifierY = 4.0 
+        this.model.movementModifierZ = 3.0
         this.model.speedModifier = 1.0
 
         this.resize()
@@ -80,9 +80,9 @@ export default class Subject
         // Debug
         if(this.debug.active)
         {
-            this.debugFolder.add(this.model, 'movementModifierX').min(0.01).max(30).step(0.001)
-            this.debugFolder.add(this.model, 'movementModifierY').min(0.01).max(30).step(0.001)
-            this.debugFolder.add(this.model, 'movementModifierZ').min(0.01).max(30).step(0.001)
+            this.debugFolder.add(this.model, 'movementModifierX').min(1).max(10).step(0.001)
+            this.debugFolder.add(this.model, 'movementModifierY').min(1).max(10).step(0.001)
+            this.debugFolder.add(this.model, 'movementModifierZ').min(1).max(10).step(0.001)
             this.debugFolder.add(this.model, 'speedModifier').min(0.01).max(3).step(0.001)
             this.debugFolder.add(this.meshArray[0].material, 'metalness').min(0).max(1).step(0.001)
             this.debugFolder.add(this.meshArray[0].material, 'roughness').min(0).max(1).step(0.001)
@@ -115,7 +115,8 @@ export default class Subject
                     this.meshArray[i].position.y = this.meshArray[i].startingPositionY - 2.5
                 }
             }
-            else{
+            else
+            {
                 this.meshArray[i].position.x = this.meshArray[i].startingPositionX
                 this.meshArray[i].position.y = this.meshArray[i].startingPositionY
             }
@@ -153,9 +154,15 @@ export default class Subject
                 let randomMovement = this.meshArray[i].randomMovementModifier
                 let randomSpeed = this.meshArray[i].randomSpeedModifier
 
-                this.meshArray[i].position.x += Math.sin(experience.time.elapsed * 0.001 * randomSpeed * this.model.speedModifier) * 0.00025 * randomMovement * this.model.movementModifierX
-                this.meshArray[i].position.y += Math.cos(experience.time.elapsed * 0.0005 * randomSpeed * this.model.speedModifier) * 0.00075 * randomMovement * this.model.movementModifierY
-                this.meshArray[i].position.z += Math.sin(experience.time.elapsed * 0.002 * randomSpeed * this.model.speedModifier) * 0.001 * randomMovement * this.model.movementModifierZ
+                this.meshArray[i].position.x += 
+                    Math.sin(experience.time.elapsed * 0.001 * randomSpeed * this.model.speedModifier) * randomMovement * this.model.movementModifierX * 0.0001
+                ;
+                this.meshArray[i].position.y += 
+                    Math.cos(experience.time.elapsed * 0.0005 * randomSpeed * this.model.speedModifier) * randomMovement * this.model.movementModifierY * 0.0001
+                ;
+                this.meshArray[i].position.z += 
+                    Math.sin(experience.time.elapsed * 0.002 * randomSpeed * this.model.speedModifier) * randomMovement * this.model.movementModifierZ * 0.0001
+                ;
             }
 
             this.effects.update(this.meshArray[i]);
