@@ -4,12 +4,6 @@
     padding: 0;
 }
 
-/* html,
-body
-{
-    overflow: hidden;
-} */
-
 .webgl
 {
     position: fixed;
@@ -24,9 +18,31 @@ body
     align-items: center;
     height: 100vh;
     position: relative;
-    font-family: 'Cabin', sans-serif;
-    color: #ffeded;
-    font-size: 7vmin;
-    padding-left: 10%;
-    padding-right: 10%;
+    font-family: 'Garamond', serif;
+}
+
+.section h1
+{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+    text-align: right;
+    color: #363632;
+    font-size: 2em;
+}
+
+.section h2
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+    text-align: left;
+    color: #363632;
+    font-size: 1em;
 }
