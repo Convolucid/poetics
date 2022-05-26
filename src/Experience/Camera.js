@@ -21,8 +21,8 @@ export default class Camera
         }
 
         this.setInstance()
+        // this.setOrbitControls()
         this.setAspectPosition()
-        this.setOrbitControls()
     }
 
     setInstance()
@@ -41,16 +41,30 @@ export default class Camera
     {
         this.instance.aspect = this.sizes.width / this.sizes.height
 
+
+
         if(this.sizes.responsiveXS === true)
         {
+            this.instance.startingPositionY = -6
             this.instance.startingPositionZ = 45
-            this.instance.position.set(0, 0, this.instance.startingPositionZ / this.instance.aspect)
+            this.instance.position.set(
+                0, 
+                this.instance.startingPositionY / this.instance.aspect, 
+                this.instance.startingPositionZ / this.instance.aspect
+            )
         }
         else
         {
+            this.instance.startingPositionY = -3
             this.instance.startingPositionZ = 70
-            this.instance.position.set(0, 0, this.instance.startingPositionZ / this.instance.aspect)
+            this.instance.position.set(
+                0, 
+                this.instance.startingPositionY / this.instance.aspect, 
+                this.instance.startingPositionZ / this.instance.aspect
+            )
         }
+
+        // this.instance.lookAt(0,-3,0)
     }
 
     setOrbitControls()
@@ -81,6 +95,6 @@ export default class Camera
 
     update()
     {
-        this.orbitControls.update()
+        // this.orbitControls.update()
     }
 }
