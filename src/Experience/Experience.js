@@ -41,12 +41,18 @@ export default class Experience
         this.raycaster = new Raycaster()
         this.world = new World()
 
-
+        this.section = 1
 
         // Sizes resize event
         this.sizes.on('resize', () =>
         {
             this.resize()
+        })
+
+        // Scrolling event
+        this.controls.on('scroll', () =>
+        {
+            this.scroll()
         })
 
         // Time tick event
@@ -62,6 +68,24 @@ export default class Experience
         this.world.resize()
         this.camera.resize()
         this.renderer.resize()
+    }
+
+    scroll()
+    {
+        // Divide experience into scrollable sections
+        const currentSection = Math.round(this.controls.scrollY / this.sizes.height) + 1
+        if(currentSection != this.section) {
+            this.section = currentSection
+
+            // Scroll-based events triggered by section
+            this.world.scroll(this.section)
+            this.camera.scroll(this.section)
+        }
+
+        // General scroll-based events
+        this.world.scroll()
+        this.camera.scroll()
+ 
     }
 
     update()

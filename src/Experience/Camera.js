@@ -71,6 +71,14 @@ export default class Camera
         this.instance.updateProjectionMatrix()
     }
 
+    scroll(section)
+    {
+        if(section)
+        {
+        // console.log(section)
+        }
+    }
+
     update()
     {
         this.orbitControls.update()

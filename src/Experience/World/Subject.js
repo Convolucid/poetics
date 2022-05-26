@@ -122,6 +122,14 @@ export default class Subject
         }
     }
 
+    scroll(section)
+    {
+        if(section)
+        {
+        // console.log(section)
+        }
+    }
+
     update()
     {
         for(let i = 0; i < this.meshArray.length; i++)

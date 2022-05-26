@@ -103,6 +103,14 @@ export default class Frame
         this.experience.raycaster.raycastObjects.push(this.mesh)
     }
 
+    scroll(section)
+    {
+        if(section)
+        {
+        // console.log(section)
+        }
+    }
+
     update()
     {
         this.material.uniforms.uTime.value = this.time.elapsed * 0.001;

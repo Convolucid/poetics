@@ -31,6 +31,12 @@ export default class World
         this.subject.resize()
     }
 
+    scroll(section)
+    {
+        this.frame.scroll(section)
+        this.subject.scroll(section)
+    }
+
     update()
     {
         if(this.subject)

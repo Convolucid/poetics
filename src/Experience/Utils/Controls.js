@@ -1,10 +1,13 @@
 import * as THREE from 'three'
 import Experience from "../Experience";
+import EventEmitter from './EventEmitter.js'
 
-export default class Controls
+export default class Controls extends EventEmitter
 {
     constructor()
     {
+        super()
+
         this.experience = new Experience()
         this.sizes = this.experience.sizes
 
@@ -18,15 +21,11 @@ export default class Controls
         })
 
         this.scrollY = window.scrollY
-        this.currentSection = 0
 
-        window.addEventListener('scroll', () =>{
+
+        window.addEventListener('scroll', () => {
             this.scrollY = window.scrollY
-
-            const newSection = Math.round(this.scrollY / this.sizes.height)
-            if(newSection != this.currentSection) {
-                this.currentSection = newSection
-            }
+            this.trigger('scroll')
         })
     }
 }
