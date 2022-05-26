@@ -16,7 +16,7 @@ export default class Frame
         if(this.debug.active)
         {
             this.debugFolder = this.debug.ui.addFolder('Hallucination')
-            // this.debugFolder.close()
+            this.debugFolder.close()
         }
 
         this.setGeometry()

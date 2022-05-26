@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import gsap from 'gsap'
 import Experience from './Experience.js'
 
 export default class Camera
@@ -54,6 +55,7 @@ export default class Camera
     setOrbitControls()
     {
         this.controls = new OrbitControls(this.instance, this.canvas)
+        this.controls.enabled = false
         this.controls.enableDamping = true
 
         if(this.debug.active)

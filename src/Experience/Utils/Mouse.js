@@ -16,5 +16,17 @@ export default class Mouse
             this.instance.y = - (event.clientY / this.sizes.height * 2 -1)
 
         })
+
+        this.scrollY = window.scrollY
+        this.currentSection = 0
+
+        window.addEventListener('scroll', () =>{
+            this.scrollY = window.scrollY
+
+            const newSection = Math.round(this.scrollY / this.sizes.height)
+            if(newSection != this.currentSection) {
+                this.currentSection = newSection
+            }
+        })
     }
 }
