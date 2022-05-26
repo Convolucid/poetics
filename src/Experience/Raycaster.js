@@ -6,7 +6,7 @@ export default class Raycaster
     constructor()
     {
         this.experience = new Experience()
-        this.mouse = this.experience.mouse.instance
+        this.controls = this.experience.controls.instance
         this.camera = this.experience.camera.instance
 
         this.setInstance()
@@ -15,7 +15,7 @@ export default class Raycaster
     setInstance()
     {
         this.instance = new THREE.Raycaster()
-        this.instance.setFromCamera(this.mouse, this.camera)
+        this.instance.setFromCamera(this.controls, this.camera)
         this.raycastObjects = []
 
         this.currentIntersect = null
@@ -32,7 +32,7 @@ export default class Raycaster
 
     update()
     {
-        this.instance.setFromCamera(this.mouse, this.camera)
+        this.instance.setFromCamera(this.controls, this.camera)
         this.intersects = this.instance.intersectObjects(this.raycastObjects)
         
         for(const object of this.raycastObjects)

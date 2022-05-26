@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import Sizes from "./Utils/Sizes.js"
 import Time from "./Utils/Time.js"
-import Mouse from "./Utils/Mouse.js"
+import Controls from "./Utils/Controls.js"
 import Camera from "./Camera.js"
 import Raycaster from "./Raycaster.js"
 import Renderer from './Renderer.js'
@@ -33,7 +33,7 @@ export default class Experience
         this.debug = new Debug()
         this.sizes = new Sizes()
         this.time = new Time()
-        this.mouse = new Mouse()
+        this.controls = new Controls()
         this.scene = new THREE.Scene()
         this.resources = new Resources(sources)
         this.camera = new Camera()
