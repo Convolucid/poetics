@@ -125,9 +125,17 @@ export default class Subject
 
     scroll(section)
     {
-        if(section)
+        switch(section)
         {
-        // console.log(section)
+            case 1:
+                this.section1()
+                break;
+            case 2:
+                this.section2()
+                break;
+            case 3:
+                this.section3()
+                break;
         }
     }
 
@@ -168,8 +176,6 @@ export default class Subject
             this.effects.update(this.meshArray[i]);
         }
     }
-
-
 
     clickActivation(object)
     {
@@ -268,5 +274,80 @@ export default class Subject
         }
     }
 
+    section1()
+    {
+        gsap.to(
+            this.model.position,
+            {
+                duration: 1.5,
+                ease: 'power2.inOut',
+                x: 0,
+                y: 0,
+                z: 0
+            }
+        )
+        gsap.to(
+            this.model.rotation,
+            {
+                duration: 1.5,
+                ease: 'power2.inOut',
+                x: 0,
+                y: 0,
+                z: 0
+            }
+        )
+        gsap.to(
+            this.meshArray[0].material,
+            {
+                duration: 1,
+                metalness: 1
+            }
+        )
+    }
+
+    section2()
+    {
+        gsap.to(
+            this.model.position,
+            {
+                duration: 3,
+                ease: 'power2.out',
+                x: 15,
+                y: -40,
+                z: 27
+            }
+        )
+        gsap.to(
+            this.model.rotation,
+            {
+                duration: 3,
+                ease: 'power2.out',
+                x: -1.1,
+                y: 0,
+                z: -1.6
+            }
+        )
+        gsap.to(
+            this.meshArray[0].material,
+            {
+                duration: 1,
+                metalness: 0
+            }
+        )
+    }
+
+    section3()
+    {
+        gsap.to(
+            this.model.rotation,
+            {
+                duration: 3,
+                ease: 'power2.out',
+                x: 1.1,
+                y: 0.8,
+                z: 0
+            }
+        )
+    }
 
 }
