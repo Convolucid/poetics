@@ -132,6 +132,7 @@ export default class Frame
             {
                 duration: 1.0,
                 ease: 'power1.out',
+                overwrite: true,
                 r: 0.3373,
                 g: 0.5059,
                 b: 0.6
@@ -142,6 +143,7 @@ export default class Frame
             {
                 duration: 1.0,
                 ease: 'power1.out',
+                overwrite: true,
                 r: 0.8235,
                 g: 0.7137,
                 b: 0.7137
@@ -156,6 +158,7 @@ export default class Frame
             {
                 duration: 2.0,
                 ease: 'power1.out',
+                overwrite: true,
                 r: 0.95,
                 g: 0.95,
                 b: 0.95
@@ -166,6 +169,7 @@ export default class Frame
             {
                 duration: 4.0,
                 ease: 'power1.out',
+                overwrite: true,
                 r: 0.2,
                 g: 0.2,
                 b: 0.2
@@ -180,6 +184,7 @@ export default class Frame
             {
                 duration: 3.0,
                 ease: 'power1.out',
+                overwrite: true,
                 r: 0.6,
                 g: 0.6,
                 b: 0.4
@@ -190,6 +195,7 @@ export default class Frame
             {
                 duration: 4.0,
                 ease: 'power1.out',
+                overwrite: true,
                 r: 0.3,
                 g: 0.4,
                 b: 0.3

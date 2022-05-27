@@ -281,6 +281,7 @@ export default class Subject
             {
                 duration: 1.5,
                 ease: 'power2.inOut',
+                overwrite: true,
                 x: 0,
                 y: 0,
                 z: 0
@@ -291,6 +292,7 @@ export default class Subject
             {
                 duration: 1.5,
                 ease: 'power2.inOut',
+                overwrite: true,
                 x: 0,
                 y: 0,
                 z: 0
@@ -300,6 +302,7 @@ export default class Subject
             this.meshArray[0].material,
             {
                 duration: 1,
+                overwrite: true,
                 metalness: 1
             }
         )
@@ -312,6 +315,7 @@ export default class Subject
             {
                 duration: 3,
                 ease: 'power2.out',
+                overwrite: true,
                 x: 15,
                 y: -40,
                 z: 27
@@ -322,6 +326,7 @@ export default class Subject
             {
                 duration: 3,
                 ease: 'power2.out',
+                overwrite: true,
                 x: -1.1,
                 y: 0,
                 z: -1.6
@@ -331,6 +336,7 @@ export default class Subject
             this.meshArray[0].material,
             {
                 duration: 1,
+                overwrite: true,
                 metalness: 0
             }
         )
@@ -343,6 +349,7 @@ export default class Subject
             {
                 duration: 3,
                 ease: 'power2.out',
+                overwrite: true,
                 x: 1.1,
                 y: 0.8,
                 z: 0

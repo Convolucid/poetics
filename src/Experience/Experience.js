@@ -72,7 +72,6 @@ export default class Experience
 
     scroll()
     {
-        console.log(this.controls.scrollY)
         // Divide experience into scrollable sections
         const currentSection = Math.round(this.controls.scrollY / (this.sizes.height)) + 1
         if(currentSection != this.section) 
