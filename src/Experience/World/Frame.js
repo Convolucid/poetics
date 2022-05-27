@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import gsap from 'gsap'
 import Experience from '../Experience.js'
 import oceanVertexShader from '../shaders/ocean/vertex.glsl';
 import oceanFragmentShader from '../shaders/ocean/fragment.glsl';
@@ -105,14 +106,94 @@ export default class Frame
 
     scroll(section)
     {
-        if(section)
+        switch(section)
         {
-        // console.log(section)
+            case 1:
+                this.section1()
+                break;
+            case 2:
+                this.section2()
+                break;
+            case 3:
+                this.section3()
+                break;
         }
     }
 
     update()
     {
         this.material.uniforms.uTime.value = this.time.elapsed * 0.001;
+    }
+
+    section1()
+    {
+        gsap.to(
+            this.material.uniforms.uDepthColor.value,
+            {
+                duration: 1.0,
+                ease: 'power1.out',
+                r: 0.3373,
+                g: 0.5059,
+                b: 0.6
+            }
+        )
+        gsap.to(
+            this.material.uniforms.uSurfaceColor.value,
+            {
+                duration: 1.0,
+                ease: 'power1.out',
+                r: 0.8235,
+                g: 0.7137,
+                b: 0.7137
+            }
+        )
+    }
+
+    section2()
+    {
+        gsap.to(
+            this.material.uniforms.uDepthColor.value,
+            {
+                duration: 2.0,
+                ease: 'power1.out',
+                r: 0.95,
+                g: 0.95,
+                b: 0.95
+            }
+        )
+        gsap.to(
+            this.material.uniforms.uSurfaceColor.value,
+            {
+                duration: 4.0,
+                ease: 'power1.out',
+                r: 0.2,
+                g: 0.2,
+                b: 0.2
+            }
+        )
+    }
+
+    section3()
+    {
+        gsap.to(
+            this.material.uniforms.uDepthColor.value,
+            {
+                duration: 3.0,
+                ease: 'power1.out',
+                r: 0.6,
+                g: 0.6,
+                b: 0.4
+            }
+        )
+        gsap.to(
+            this.material.uniforms.uSurfaceColor.value,
+            {
+                duration: 4.0,
+                ease: 'power1.out',
+                r: 0.3,
+                g: 0.4,
+                b: 0.3
+            }
+        )
     }
 }
