@@ -125,18 +125,7 @@ export default class Subject
 
     scroll(section)
     {
-        switch(section)
-        {
-            case 1:
-                this.section1()
-                break;
-            case 2:
-                this.section2()
-                break;
-            case 3:
-                this.section3()
-                break;
-        }
+
     }
 
     update()
@@ -273,88 +262,4 @@ export default class Subject
  
         }
     }
-
-    section1()
-    {
-        gsap.to(
-            this.model.position,
-            {
-                duration: 1.5,
-                ease: 'power2.inOut',
-                overwrite: true,
-                x: 0,
-                y: 0,
-                z: 0
-            }
-        )
-        gsap.to(
-            this.model.rotation,
-            {
-                duration: 1.5,
-                ease: 'power2.inOut',
-                overwrite: true,
-                x: 0,
-                y: 0,
-                z: 0
-            }
-        )
-        gsap.to(
-            this.meshArray[0].material,
-            {
-                duration: 1,
-                overwrite: true,
-                metalness: 1
-            }
-        )
-    }
-
-    section2()
-    {
-        gsap.to(
-            this.model.position,
-            {
-                duration: 3,
-                ease: 'power2.out',
-                overwrite: true,
-                x: 15,
-                y: -40,
-                z: 27
-            }
-        )
-        gsap.to(
-            this.model.rotation,
-            {
-                duration: 3,
-                ease: 'power2.out',
-                overwrite: true,
-                x: -1.1,
-                y: 0,
-                z: -1.6
-            }
-        )
-        gsap.to(
-            this.meshArray[0].material,
-            {
-                duration: 1,
-                overwrite: true,
-                metalness: 0
-            }
-        )
-    }
-
-    section3()
-    {
-        gsap.to(
-            this.model.rotation,
-            {
-                duration: 3,
-                ease: 'power2.out',
-                overwrite: true,
-                x: 1.1,
-                y: 0.8,
-                z: 0
-            }
-        )
-    }
-
 }

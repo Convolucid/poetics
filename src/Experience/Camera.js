@@ -1,6 +1,4 @@
 import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import gsap from 'gsap'
 import Experience from './Experience.js'
 
 export default class Camera
@@ -65,76 +63,15 @@ export default class Camera
         this.instance.updateProjectionMatrix()
     }
 
-    scroll(section)
+    scroll()
     {
-        switch(section)
-        {
-            case 1:
-                this.section1()
-                break;
-            case 2:
-                this.section2()
-                break;
-            case 3:
-                this.section3()
-                break;
-        }
-
         this.scrollPositionY = this.controls.scrollY * 0.005
-       
+    
         this.setPosition()
     }
 
     update()
     {
 
-    }
-
-
-
-    // Section Transformations
-    section1()
-    {
-        gsap.to(
-            this.instance.rotation,
-            {
-                duration: 1.5,
-                ease: 'power2.inOut',
-                overwrite: true,
-                x: 0,
-                y: 0,
-                z: 0
-            }
-        )
-    }
-
-    section2()
-    {
-        gsap.to(
-            this.instance.rotation,
-            {
-                duration: 1.5,
-                ease: 'power2.inOut',
-                overwrite: true,
-                x: -1.1,
-                y: 0,
-                z: 0
-            }
-        )
-    }
-
-    section3()
-    {
-        gsap.to(
-            this.instance.rotation,
-            {
-                duration: 1.5,
-                ease: 'power2.inOut',
-                overwrite: true,
-                x: -0.9,
-                y: 0,
-                z: 1.6
-            }
-        )
     }
 }

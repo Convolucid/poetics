@@ -17,10 +17,6 @@ export default class World
             this.frame = new Frame()
             this.subject = new Subject()
             this.environment = new Environment()
-
-
-
-            // console.log(this.experience.raycaster.raycastObjects)
         })
 
 
@@ -31,10 +27,10 @@ export default class World
         this.subject.resize()
     }
 
-    scroll(section)
+    scroll()
     {
-        this.frame.scroll(section)
-        this.subject.scroll(section)
+        this.frame.scroll()
+        this.subject.scroll()
     }
 
     update()

@@ -8,6 +8,7 @@ import Renderer from './Renderer.js'
 import World from './World/World.js'
 import Resources from './Utils/Resources.js'
 import sources from './World/sources.js'
+import Chapters from './Chapters.js'
 import Debug from './Utils/Debug.js'
 
 let instance = null
@@ -40,6 +41,7 @@ export default class Experience
         this.renderer = new Renderer()
         this.raycaster = new Raycaster()
         this.world = new World()
+        this.chapters = new Chapters()
 
         this.section = 1
 
@@ -78,9 +80,18 @@ export default class Experience
         {
             this.section = currentSection
 
-            // Scroll-based events triggered by section
-            this.world.scroll(this.section)
-            this.camera.scroll(this.section)
+            switch(this.section)
+            {
+                case 1:
+                    this.chapters.title()
+                    break;
+                case 2:
+                    this.chapters.article1()
+                    break;
+                case 4:
+                    this.chapters.article2()
+                    break;
+            }
         }
 
         // General scroll-based events
@@ -127,7 +138,8 @@ export default class Experience
         this.camera.controls.dispose()
         this.renderer.instance.dispose()
 
-        if(this.debug.active){
+        if(this.debug.active)
+        {
             this.debug.ui.destroy()
         }
 

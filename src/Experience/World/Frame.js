@@ -66,7 +66,8 @@ export default class Frame
         )
 
         // Debug
-        if(this.debug.active){
+        if(this.debug.active)
+        {
             this.debugFolder.add(this.material.uniforms.uBigWavesElevation, 'value').min(0).max(4).step(0.001).name('uBigWavesElevation')
             this.debugFolder.add(this.material.uniforms.uBigWavesFrequency.value, 'x').min(0).max(1).step(0.001).name('uBigWavesFrequencyX')
             this.debugFolder.add(this.material.uniforms.uBigWavesFrequency.value, 'y').min(0).max(1).step(0.001).name('uBigWavesFrequencyY')
@@ -104,102 +105,13 @@ export default class Frame
         this.experience.raycaster.raycastObjects.push(this.mesh)
     }
 
-    scroll(section)
+    scroll()
     {
-        switch(section)
-        {
-            case 1:
-                this.section1()
-                break;
-            case 2:
-                this.section2()
-                break;
-            case 3:
-                this.section3()
-                break;
-        }
+
     }
 
     update()
     {
         this.material.uniforms.uTime.value = this.time.elapsed * 0.001;
-    }
-
-    section1()
-    {
-        gsap.to(
-            this.material.uniforms.uDepthColor.value,
-            {
-                duration: 1.0,
-                ease: 'power1.out',
-                overwrite: true,
-                r: 0.3373,
-                g: 0.5059,
-                b: 0.6
-            }
-        )
-        gsap.to(
-            this.material.uniforms.uSurfaceColor.value,
-            {
-                duration: 1.0,
-                ease: 'power1.out',
-                overwrite: true,
-                r: 0.8235,
-                g: 0.7137,
-                b: 0.7137
-            }
-        )
-    }
-
-    section2()
-    {
-        gsap.to(
-            this.material.uniforms.uDepthColor.value,
-            {
-                duration: 2.0,
-                ease: 'power1.out',
-                overwrite: true,
-                r: 0.95,
-                g: 0.95,
-                b: 0.95
-            }
-        )
-        gsap.to(
-            this.material.uniforms.uSurfaceColor.value,
-            {
-                duration: 4.0,
-                ease: 'power1.out',
-                overwrite: true,
-                r: 0.2,
-                g: 0.2,
-                b: 0.2
-            }
-        )
-    }
-
-    section3()
-    {
-        gsap.to(
-            this.material.uniforms.uDepthColor.value,
-            {
-                duration: 3.0,
-                ease: 'power1.out',
-                overwrite: true,
-                r: 0.6,
-                g: 0.6,
-                b: 0.4
-            }
-        )
-        gsap.to(
-            this.material.uniforms.uSurfaceColor.value,
-            {
-                duration: 4.0,
-                ease: 'power1.out',
-                overwrite: true,
-                r: 0.3,
-                g: 0.4,
-                b: 0.3
-            }
-        )
     }
 }
