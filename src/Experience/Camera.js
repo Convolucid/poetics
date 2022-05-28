@@ -19,8 +19,8 @@ export default class Camera
         }
 
         this.setInstance()
-        this.scroll()
         this.resize()
+        this.scroll()
     }
 
     setInstance()
@@ -33,6 +33,10 @@ export default class Camera
             150
         )
 
+        this.instance.initialPosition = new THREE.Vector3(this.instance.position.xyz)
+        this.instance.scrollPosition = new THREE.Vector3(this.instance.position.xyz)
+
+        // Debug options 
         if(this.debug.active)
         {
             this.debugFolder.add(this.instance, 'fov').min(0.1).max(100).step(0.01)
@@ -49,28 +53,18 @@ export default class Camera
         this.scene.add(this.instance)
     }
 
-    setPosition()
-    {
-        this.instance.position.set(
-            0, 
-            (this.instance.startingPositionY / this.instance.aspect) - this.scrollPositionY, 
-            this.instance.startingPositionZ / this.instance.aspect
-        )
-    }
-
     resize()
     {
         this.instance.aspect = this.sizes.width / this.sizes.height
+        this.instance.fov = 35 / this.instance.aspect
 
         if(this.sizes.responsiveXS === true)
         {
-            this.instance.startingPositionY = -6
-            this.instance.startingPositionZ = 45
+            this.instance.initialPosition.set(0, -5, 45)
         }
         else
         {
-            this.instance.startingPositionY = -3
-            this.instance.startingPositionZ = 70
+            this.instance.initialPosition.set(0, -2.5, 70)
         }
 
         this.setPosition()
@@ -79,9 +73,20 @@ export default class Camera
 
     scroll()
     {
-        this.scrollPositionY = this.controls.scrollY * 0.005
+        let scrollSpeed = (this.controls.scrollY / this.sizes.height) * 5
+        this.instance.scrollPosition.y = this.instance.initialPosition.y - scrollSpeed
 
         this.setPosition()
+
+    }
+
+    setPosition()
+    {
+        this.instance.position.set(
+            this.instance.initialPosition.x, 
+            this.instance.scrollPosition.y, 
+            this.instance.initialPosition.z
+        )
     }
 
     update()

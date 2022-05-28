@@ -21,6 +21,11 @@ section
     padding: 5%;
 }
 
+.title
+{
+    height: 125vh;
+}
+
 .double
 {
     height: 200vh;
@@ -46,7 +51,7 @@ article > div
 h1
 {
     position: absolute;
-    bottom: 0;
+    bottom: 25vh;
     right: 0;
     padding-left: 5%;
     padding-right: 5%;

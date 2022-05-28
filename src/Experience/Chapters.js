@@ -100,7 +100,7 @@ export default class Chapters
                 duration: 1.5,
                 ease: 'power2.inOut',
                 overwrite: true,
-                x: -1.1,
+                x: -0.55,
                 y: 0,
                 z: 0
             }
@@ -173,9 +173,9 @@ export default class Chapters
                 duration: 1.5,
                 ease: 'power2.inOut',
                 overwrite: true,
-                x: -0.9,
+                x: -0.4,
                 y: 0,
-                z: 1.6
+                z: 1.7
             }
         )
 
