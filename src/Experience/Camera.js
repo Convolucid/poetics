@@ -19,8 +19,6 @@ export default class Camera
         }
 
         this.setInstance()
-        this.resize()
-        this.scroll()
     }
 
     setInstance()
@@ -33,8 +31,13 @@ export default class Camera
             150
         )
 
-        this.instance.initialPosition = new THREE.Vector3(this.instance.position.xyz)
-        this.instance.scrollPosition = new THREE.Vector3(this.instance.position.xyz)
+        this.instance.chapterPosition = new THREE.Vector3()
+        this.instance.resizePosition = new THREE.Vector3()
+        this.instance.scrollFactor = 0
+
+        // Setting the chapter position includes the resize function, which includes the general setPosition function
+        this.setChapterPosition(0, -2.5, 70)
+
 
         // Debug options 
         if(this.debug.active)
@@ -53,6 +56,14 @@ export default class Camera
         this.scene.add(this.instance)
     }
 
+    // setChapterPosition modifies the camera's stored position variable based on chapter and runs the resize function for responsive sizing of that variable.
+    setChapterPosition(x, y, z)
+    {
+        this.instance.chapterPosition.set(x, y, z)
+        this.resize()
+    }
+
+    // Resize function allows for window.innerWidth to alter the fov, aspect ratio, and position of the camera with a toggle set in sizes (can be expanded to other sizes in the future).  It then runs setPosition to move the camera.
     resize()
     {
         this.instance.aspect = this.sizes.width / this.sizes.height
@@ -60,32 +71,42 @@ export default class Camera
 
         if(this.sizes.responsiveXS === true)
         {
-            this.instance.initialPosition.set(0, -5, 45)
+            this.instance.resizePosition.set(
+                this.instance.chapterPosition.x,
+                this.instance.chapterPosition.y - 2.5,
+                this.instance.chapterPosition.z * 0.65
+            )
         }
         else
         {
-            this.instance.initialPosition.set(0, -2.5, 70)
+            this.instance.resizePosition.set(
+                this.instance.chapterPosition.x,
+                this.instance.chapterPosition.y,
+                this.instance.chapterPosition.z,
+            )
         }
 
         this.setPosition()
         this.instance.updateProjectionMatrix()
     }
 
+    // scroll function calculates the total amount scrolled and sets the position of the camera to include that offset.
     scroll()
     {
-        let scrollSpeed = (this.controls.scrollY / this.sizes.height) * 5
-        this.instance.scrollPosition.y = this.instance.initialPosition.y - scrollSpeed
-
+        // scrollFactor allows a constant rate of scrolling regardless of window height and captures the total scrolled amount
+        this.instance.scrollFactor = (this.controls.scrollY / this.sizes.height) * 5
         this.setPosition()
-
     }
 
+
+
+    // setPosition function takes the responsive resizePosition, reduces Y by the scrollFactor, and sets the camera.
     setPosition()
     {
         this.instance.position.set(
-            this.instance.initialPosition.x, 
-            this.instance.scrollPosition.y, 
-            this.instance.initialPosition.z
+            this.instance.resizePosition.x, 
+            this.instance.resizePosition.y - this.instance.scrollFactor, 
+            this.instance.resizePosition.z
         )
     }
 
