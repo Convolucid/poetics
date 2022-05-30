@@ -78,3 +78,11 @@ h2
 {
     background-image: radial-gradient(farthest-corner at 75% 75%, rgb(221, 221, 221, 0), rgb(143, 143, 141, 0.5), rgb(255, 255, 255, 1));
 }
+
+/* Media Queries */
+@media (max-width: 768px) {
+    h1
+    {
+        font-size: 1.5em;
+    }
+}
