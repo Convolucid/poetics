@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import Sizes from "./Utils/Sizes.js"
 import Time from "./Utils/Time.js"
+import CSSEffects from "./Effects/CSSEffects.js"
 import Controls from "./Utils/Controls.js"
 import Camera from "./Camera.js"
 import Raycaster from "./Raycaster.js"
@@ -27,7 +28,7 @@ export default class Experience
         // Global access
         window.experience = this
 
-        // Options
+        // Canvas
         this.canvas = canvas
 
         // Setup
@@ -35,6 +36,7 @@ export default class Experience
         this.sizes = new Sizes()
         this.time = new Time()
         this.controls = new Controls()
+        this.cssEffects = new CSSEffects()
         this.scene = new THREE.Scene()
         this.resources = new Resources(sources)
         this.camera = new Camera()
@@ -102,6 +104,7 @@ export default class Experience
 
     update()
     {
+        this.cssEffects.update()
         this.camera.update()
         this.world.update()
         this.raycaster.update()
