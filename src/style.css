@@ -132,8 +132,8 @@ canvas#article2
 
     section.double, section.triple
     {
-    /* background-image: 
+    background-image: 
         linear-gradient(to right, rgb(255, 255, 255, 1), rgba(255, 255, 255, 0))
-    ; */
+    ;
     }
 }

@@ -44,8 +44,8 @@ export default class CSSEffects
         context2d.canvas.width = context2d.canvas.getBoundingClientRect().width
         context2d.canvas.height = context2d.canvas.getBoundingClientRect().height
         
-        // Create an area factor to adjust count and radius
-        const canvasAreaFactor = Math.round((context2d.canvas.width * context2d.canvas.height) / 10000)
+        // Create an area factor to adjust radius
+        const canvasHeightScalar = context2d.canvas.height / 5
 
         context2d.cloudArray = []
         const cloudCount = 200
@@ -54,9 +54,9 @@ export default class CSSEffects
         {
             let cloud = {}
             cloud.randomModifier = Math.random() * 10
-            cloud.radius = this.randInt(canvasAreaFactor / 5, canvasAreaFactor * 1.5)
+            cloud.radius = this.randInt(canvasHeightScalar / 5, canvasHeightScalar * 1.5)
             cloud.x = this.randInt(context2d.canvas.width)
-            cloud.y = this.randInt(cloud.radius + cloud.randomModifier, context2d.canvas.height - (cloud.radius + cloud.randomModifier))
+            cloud.y = this.randInt(cloud.radius * 2, context2d.canvas.height - (cloud.radius * 2))
 
             context2d.cloudArray.push(cloud)
         }
@@ -78,14 +78,13 @@ export default class CSSEffects
         let canvasWidthScalar = context2d.canvas.width / canvasW
         let canvasHeightScalar = context2d.canvas.height / canvasH
         
-
-        // Create an area scalar to adjust radius
-        const canvasRadiusScalar = canvasWidthScalar / canvasHeightScalar
+    
+        // Adjust cloud radius and position based on new canvas sizes
 
         for(let i=0; i < context2d.cloudArray.length; i++)
         {
             let cloud = context2d.cloudArray[i]
-            cloud.radius *= canvasRadiusScalar
+            cloud.radius *= canvasHeightScalar
             cloud.x *= canvasWidthScalar
             cloud.y *= canvasHeightScalar
         }
@@ -96,29 +95,33 @@ export default class CSSEffects
         context2d.clearRect(0, 0, context2d.canvas.width, context2d.canvas.height)
 
         context2d.timeFactor = Math.sin(this.time.elapsed * 0.0005)
-        
+
         for(let i=0; i < context2d.cloudArray.length; i++)
         {
+            // Draw ellipse shape and place it
             const radius = context2d.cloudArray[i].radius
             const x = context2d.cloudArray[i].x + context2d.timeFactor * context2d.cloudArray[i].randomModifier
             const y = context2d.cloudArray[i].y + context2d.timeFactor * context2d.cloudArray[i].randomModifier
 
-            let gradient = context2d.createRadialGradient(x, y, 0, x, y, radius)
-            gradient.addColorStop(
+            context2d.beginPath();
+            context2d.arc(x, y, radius, 0, Math.PI * 2)
+            // context2d.ellipse(x, y, radius * 2, radius, 0, 0, Math.PI * 2)
+
+            // Create gradient and fill ellipse
+            let radialGradient = context2d.createRadialGradient(x, y, 0, x, y, radius)
+            radialGradient.addColorStop(
                 0, 
                 'rgba(256,256,256,' 
                     + (Math.abs(context2d.timeFactor) + Math.sin(context2d.cloudArray[i].randomModifier)) 
                     + ')'
                 )
-            gradient.addColorStop(1, 'rgba(255,255,255, 0.0)')
-    
-            context2d.fillStyle = gradient
-    
-            context2d.beginPath();
-            context2d.arc(x, y, radius, 0, Math.PI * 2)
-            context2d.fill()
-        }
+            radialGradient.addColorStop(1, 'rgba(255,255,255, 0.0)')
 
+            context2d.fillStyle = radialGradient
+            context2d.fill()
+
+
+        }
     }
 
 
