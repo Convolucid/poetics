@@ -12,10 +12,17 @@ export default class CSSEffects
             this.title = document.querySelector('#title').getContext('2d')
             this.article1 = document.querySelector('#article1').getContext('2d')
             this.article2 = document.querySelector('#article2').getContext('2d')
+
+            this.loadingComplete = false;
             
-            this.createClouds(this.title)
-            this.createClouds(this.article1)
-            this.createClouds(this.article2)
+            window.addEventListener('load', (event) =>
+            {
+                this.createClouds(this.title)
+                this.createClouds(this.article1)
+                this.createClouds(this.article2)
+                this.loadingComplete = true;
+            })
+
         }
 
 
@@ -34,10 +41,15 @@ export default class CSSEffects
     // Need to create clouds with an adaptive count and radius depending on canvas-width and height, also with a color variable
     createClouds(context2d)
     {
-        context2d.scale(0.5, 1)
+        // context2d.scale(0.5, 1)
 
         context2d.cloudArray = []
         context2d.cloudArray.total = 300
+
+        const canvasW = context2d.canvas.getBoundingClientRect().width
+        const canvasH = context2d.canvas.getBoundingClientRect().height
+
+        console.log(canvasW, canvasH)
 
         for(let i=0; i < context2d.cloudArray.total; i++)
         {
@@ -47,6 +59,7 @@ export default class CSSEffects
             cloud.y = this.randInt(cloud.radius + 50, context2d.canvas.height - (cloud.radius + 50))
             cloud.randomModifier = Math.random() * 10
 
+            console.log(canvasW, canvasH)
             context2d.cloudArray.push(cloud)
         }
 
@@ -87,9 +100,13 @@ export default class CSSEffects
 
     update()
     {
-        this.drawClouds(this.title)
-        this.drawClouds(this.article1)
-        this.drawClouds(this.article2)
+        if(this.loadingComplete === true)
+        {
+            this.drawClouds(this.title)
+            this.drawClouds(this.article1)
+            this.drawClouds(this.article2)
+        }
+
     }
 
 
