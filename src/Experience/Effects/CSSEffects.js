@@ -41,25 +41,23 @@ export default class CSSEffects
     // Need to create clouds with an adaptive count and radius depending on canvas-width and height, also with a color variable
     createClouds(context2d)
     {
-        // context2d.scale(0.5, 1)
+        context2d.canvas.width = context2d.canvas.getBoundingClientRect().width
+        context2d.canvas.height = context2d.canvas.getBoundingClientRect().height
+        
+        // Create an area factor to adjust count and radius
+        const canvasAreaFactor = Math.round((context2d.canvas.width * context2d.canvas.height) / 10000)
 
         context2d.cloudArray = []
-        context2d.cloudArray.total = 300
+        const cloudCount = 200
 
-        const canvasW = context2d.canvas.getBoundingClientRect().width
-        const canvasH = context2d.canvas.getBoundingClientRect().height
-
-        console.log(canvasW, canvasH)
-
-        for(let i=0; i < context2d.cloudArray.total; i++)
+        for(let i=0; i < cloudCount; i++)
         {
             let cloud = {}
-            cloud.radius = this.randInt(10, 50)
-            cloud.x = this.randInt(context2d.canvas.width * 2)
-            cloud.y = this.randInt(cloud.radius + 50, context2d.canvas.height - (cloud.radius + 50))
             cloud.randomModifier = Math.random() * 10
+            cloud.radius = this.randInt(canvasAreaFactor / 5, canvasAreaFactor * 1.5)
+            cloud.x = this.randInt(context2d.canvas.width)
+            cloud.y = this.randInt(cloud.radius + cloud.randomModifier, context2d.canvas.height - (cloud.radius + cloud.randomModifier))
 
-            console.log(canvasW, canvasH)
             context2d.cloudArray.push(cloud)
         }
 
@@ -67,13 +65,39 @@ export default class CSSEffects
 
     }
 
+
+    resizeClouds(context2d)
+    {
+        // Gets current canvas height and width, resets it to actual values, and calculates the ratio between the last value and new
+        let canvasW = context2d.canvas.width
+        let canvasH = context2d.canvas.height
+
+        context2d.canvas.width = context2d.canvas.getBoundingClientRect().width
+        context2d.canvas.height = context2d.canvas.getBoundingClientRect().height
+
+        let canvasWidthScalar = context2d.canvas.width / canvasW
+        let canvasHeightScalar = context2d.canvas.height / canvasH
+        
+
+        // Create an area scalar to adjust radius
+        const canvasRadiusScalar = canvasWidthScalar / canvasHeightScalar
+
+        for(let i=0; i < context2d.cloudArray.length; i++)
+        {
+            let cloud = context2d.cloudArray[i]
+            cloud.radius *= canvasRadiusScalar
+            cloud.x *= canvasWidthScalar
+            cloud.y *= canvasHeightScalar
+        }
+    }
+
     drawClouds(context2d)
     {
-        context2d.clearRect(0, 0, context2d.canvas.width / 0.5, context2d.canvas.height)
+        context2d.clearRect(0, 0, context2d.canvas.width, context2d.canvas.height)
 
         context2d.timeFactor = Math.sin(this.time.elapsed * 0.0005)
         
-        for(let i=0; i < context2d.cloudArray.total; i++)
+        for(let i=0; i < context2d.cloudArray.length; i++)
         {
             const radius = context2d.cloudArray[i].radius
             const x = context2d.cloudArray[i].x + context2d.timeFactor * context2d.cloudArray[i].randomModifier
@@ -97,6 +121,13 @@ export default class CSSEffects
 
     }
 
+
+    resize()
+    {
+        this.resizeClouds(this.title)
+        this.resizeClouds(this.article1)
+        this.resizeClouds(this.article2)
+    }
 
     update()
     {
