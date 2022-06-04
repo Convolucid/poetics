@@ -11,9 +11,11 @@ export default class CSSEffects
         {
             this.title = document.querySelector('#title').getContext('2d')
             this.article1 = document.querySelector('#article1').getContext('2d')
+            this.article2 = document.querySelector('#article2').getContext('2d')
             
             this.createClouds(this.title)
             this.createClouds(this.article1)
+            this.createClouds(this.article2)
         }
 
 
@@ -57,7 +59,6 @@ export default class CSSEffects
         context2d.clearRect(0, 0, context2d.canvas.width / 0.5, context2d.canvas.height)
 
         context2d.timeFactor = Math.sin(this.time.elapsed * 0.0005)
-        console.log(context2d.timeFactor)
         
         for(let i=0; i < context2d.cloudArray.total; i++)
         {
@@ -88,6 +89,7 @@ export default class CSSEffects
     {
         this.drawClouds(this.title)
         this.drawClouds(this.article1)
+        this.drawClouds(this.article2)
     }
 
 

@@ -7,6 +7,7 @@ export default class Chapters
     {
         this.experience = new Experience()
         this.camera = this.experience.camera
+        this.renderer = this.experience.renderer
         this.resources = this.experience.resources
 
         this.resources.on('ready', ()=>
@@ -30,6 +31,20 @@ export default class Chapters
                 x: 0,
                 y: 0,
                 z: 0
+            }
+        )
+
+        // Renderer
+
+        gsap.to(
+            this.renderer.debugObject.clearColor,
+            {
+                duration: 1.5,
+                ease: 'power2.inOut',
+                overwrite: true,
+                r: 0.95,
+                g: 0.95,
+                b: 0.95
             }
         )
 
@@ -106,6 +121,19 @@ export default class Chapters
             }
         )
 
+        // Renderer
+        gsap.to(
+            this.renderer.debugObject.clearColor,
+            {
+                duration: 5.0,
+                ease: 'power2.inOut',
+                overwrite: true,
+                r: 0.45,
+                g: 0.45,
+                b: 0.45
+            }
+        )
+
         // Frame
         gsap.to(
             this.frame.material.uniforms.uDepthColor.value,
@@ -131,36 +159,36 @@ export default class Chapters
         )
 
         // Subject
-        gsap.to(
-            this.subject.model.position,
-            {
-                duration: 3,
-                ease: 'power2.out',
-                overwrite: true,
-                x: 15,
-                y: -40,
-                z: 27
-            }
-        )
-        gsap.to(
-            this.subject.model.rotation,
-            {
-                duration: 3,
-                ease: 'power2.out',
-                overwrite: true,
-                x: -1.1,
-                y: 0,
-                z: -1.6
-            }
-        )
-        gsap.to(
-            this.subject.meshArray[0].material,
-            {
-                duration: 1,
-                overwrite: true,
-                metalness: 0
-            }
-        )
+        // gsap.to(
+        //     this.subject.model.position,
+        //     {
+        //         duration: 3,
+        //         ease: 'power2.out',
+        //         overwrite: true,
+        //         x: 15,
+        //         y: -40,
+        //         z: 27
+        //     }
+        // )
+        // gsap.to(
+        //     this.subject.model.rotation,
+        //     {
+        //         duration: 3,
+        //         ease: 'power2.out',
+        //         overwrite: true,
+        //         x: -1.1,
+        //         y: 0,
+        //         z: -1.6
+        //     }
+        // )
+        // gsap.to(
+        //     this.subject.meshArray[0].material,
+        //     {
+        //         duration: 1,
+        //         overwrite: true,
+        //         metalness: 0
+        //     }
+        // )
     }
 
     // Sections 4-6
@@ -176,6 +204,19 @@ export default class Chapters
                 x: -0.4,
                 y: 0,
                 z: 1.7
+            }
+        )
+
+        // Renderer
+        gsap.to(
+            this.renderer.debugObject.clearColor,
+            {
+                duration: 1.5,
+                ease: 'power2.inOut',
+                overwrite: true,
+                r: 0.3373,
+                g: 0.5059,
+                b: 0.6
             }
         )
 
