@@ -9,12 +9,21 @@ export default class CSSEffects
 
         if(document.body.animate)
         {
+            // Get canvases and 2d contexts
             this.title = document.querySelector('#title').getContext('2d')
             this.article1 = document.querySelector('#article1').getContext('2d')
             this.article2 = document.querySelector('#article2').getContext('2d')
-
-            this.loadingComplete = false;
             
+
+            // Attach cloud colors to contexts, leaving alpha option open for drawClouds()
+            this.title.color = 'rgb(255, 240, 190,'
+            this.article1.color = 'rgb(255, 255, 245,'
+            this.article2.color = 'rgb(255, 255, 245,'
+
+
+            // Toggle loadingComplete to begin animating clouds in update function
+            this.loadingComplete = false;
+
             window.addEventListener('load', (event) =>
             {
                 this.createClouds(this.title)
@@ -98,24 +107,24 @@ export default class CSSEffects
 
         for(let i=0; i < context2d.cloudArray.length; i++)
         {
-            // Draw ellipse shape and place it
+            // Draw circle and place it
             const radius = context2d.cloudArray[i].radius
             const x = context2d.cloudArray[i].x + context2d.timeFactor * context2d.cloudArray[i].randomModifier
             const y = context2d.cloudArray[i].y + context2d.timeFactor * context2d.cloudArray[i].randomModifier
 
             context2d.beginPath();
             context2d.arc(x, y, radius, 0, Math.PI * 2)
-            // context2d.ellipse(x, y, radius * 2, radius, 0, 0, Math.PI * 2)
 
-            // Create gradient and fill ellipse
+            // Create gradient and fill circle
             let radialGradient = context2d.createRadialGradient(x, y, 0, x, y, radius)
             radialGradient.addColorStop(
                 0, 
-                'rgba(256,256,256,' 
+                context2d.color
                     + (Math.abs(context2d.timeFactor) + Math.sin(context2d.cloudArray[i].randomModifier)) 
                     + ')'
-                )
-            radialGradient.addColorStop(1, 'rgba(255,255,255, 0.0)')
+            )
+
+            radialGradient.addColorStop(1, context2d.color + '0.0)')
 
             context2d.fillStyle = radialGradient
             context2d.fill()
