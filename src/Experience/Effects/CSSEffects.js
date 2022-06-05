@@ -17,8 +17,8 @@ export default class CSSEffects
 
             // Attach cloud colors to contexts, leaving alpha option open for drawClouds()
             this.title.color = 'rgb(255, 240, 190,'
-            this.article1.color = 'rgb(255, 255, 245,'
-            this.article2.color = 'rgb(255, 255, 245,'
+            this.article1.color = 'rgb(220, 220, 220,'
+            this.article2.color = 'rgb(215, 245, 205,'
 
 
             // Toggle loadingComplete to begin animating clouds in update function
@@ -117,8 +117,11 @@ export default class CSSEffects
 
             // Create gradient and fill circle
             let radialGradient = context2d.createRadialGradient(x, y, 0, x, y, radius)
+            
+            
+            radialGradient.addColorStop(0, 'rgba(255, 255, 255, 1.0)')
             radialGradient.addColorStop(
-                0, 
+                0.5, 
                 context2d.color
                     + (Math.abs(context2d.timeFactor) + Math.sin(context2d.cloudArray[i].randomModifier)) 
                     + ')'

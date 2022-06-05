@@ -6,6 +6,7 @@ export default class Chapters
     constructor()
     {
         this.experience = new Experience()
+        this.cssEffects = this.experience.cssEffects
         this.camera = this.experience.camera
         this.renderer = this.experience.renderer
         this.resources = this.experience.resources
@@ -21,6 +22,10 @@ export default class Chapters
     // Section 1
     title()
     {
+        // CSS
+        this.cssEffects.title.color = 'rgb(255, 240, 190,'
+
+
         // Camera
         gsap.to(
             this.camera.instance.rotation,
@@ -49,6 +54,31 @@ export default class Chapters
         )
 
         // Frame
+        this.frame.material.uniforms.uBigWavesElevation.value = 1.5
+        this.frame.material.uniforms.uBigWavesSpeed.value = 0.1
+        this.frame.material.uniforms.uSmallWavesSpeed.value = 0.2
+        this.frame.material.uniforms.uSmallWavesIterations.value = 4
+        this.frame.material.uniforms.uColorOffset.value = 0.19
+        this.frame.material.uniforms.uColorMultiplier.value = 1.02
+        
+        gsap.to(
+            this.frame.material.uniforms.uSmallWavesFrequency,
+            {
+                duration: 3.0,
+                ease: 'power1.out',
+                overwrite: true,
+                value: 0.112
+            }
+        )
+        gsap.to(
+            this.frame.material.uniforms.uSmallWavesElevation,
+            {
+                duration: 3.0,
+                ease: 'power1.out',
+                overwrite: true,
+                value: 0.96
+            }
+        )
         gsap.to(
             this.frame.material.uniforms.uDepthColor.value,
             {
@@ -108,12 +138,15 @@ export default class Chapters
     // Sections 2-3
     article1()
     {
+        // CSS
+        this.cssEffects.title.color = 'rgb(220, 220, 220,'
+
         // Camera
         gsap.to(
             this.camera.instance.rotation,
             {
                 duration: 1.5,
-                ease: 'power2.inOut',
+                ease: 'slow',
                 overwrite: true,
                 x: -0.55,
                 y: 0,
@@ -135,10 +168,35 @@ export default class Chapters
         )
 
         // Frame
+        this.frame.material.uniforms.uBigWavesElevation.value = 6.0
+        this.frame.material.uniforms.uBigWavesSpeed.value = 0.1
+        this.frame.material.uniforms.uSmallWavesSpeed.value = 0.2
+        this.frame.material.uniforms.uSmallWavesIterations.value = 5
+        this.frame.material.uniforms.uColorOffset.value = 4
+        this.frame.material.uniforms.uColorMultiplier.value = 0.105
+        
+        gsap.to(
+            this.frame.material.uniforms.uSmallWavesFrequency,
+            {
+                duration: 3.0,
+                ease: 'power1.out',
+                overwrite: true,
+                value: 0.321
+            }
+        )
+        gsap.to(
+            this.frame.material.uniforms.uSmallWavesElevation,
+            {
+                duration: 3.0,
+                ease: 'power1.out',
+                overwrite: true,
+                value: 2.84
+            }
+        )
         gsap.to(
             this.frame.material.uniforms.uDepthColor.value,
             {
-                duration: 2.0,
+                duration: 4.0,
                 ease: 'power1.out',
                 overwrite: true,
                 r: 0.95,
@@ -214,33 +272,58 @@ export default class Chapters
                 duration: 1.5,
                 ease: 'power2.inOut',
                 overwrite: true,
-                r: 0.3373,
-                g: 0.5059,
-                b: 0.6
+                r: 0.1,
+                g: 0.4,
+                b: 0.2
             }
         )
 
         // Frame
+        this.frame.material.uniforms.uBigWavesElevation.value = 2.0
+        this.frame.material.uniforms.uBigWavesSpeed.value = 0.1
+        this.frame.material.uniforms.uSmallWavesSpeed.value = 0.2
+        this.frame.material.uniforms.uSmallWavesIterations.value = 5
+        this.frame.material.uniforms.uColorOffset.value = 0.19
+        this.frame.material.uniforms.uColorMultiplier.value = 0.75
+
+        gsap.to(
+            this.frame.material.uniforms.uSmallWavesFrequency,
+            {
+                duration: 2.0,
+                ease: 'power1.out',
+                overwrite: true,
+                value: 0.05
+            }
+        )
+        gsap.to(
+            this.frame.material.uniforms.uSmallWavesElevation,
+            {
+                duration: 2.0,
+                ease: 'power1.out',
+                overwrite: true,
+                value: 3.5
+            }
+        )
         gsap.to(
             this.frame.material.uniforms.uDepthColor.value,
             {
-                duration: 3.0,
+                duration: 1.0,
                 ease: 'power1.out',
                 overwrite: true,
-                r: 0.6,
-                g: 0.6,
+                r: 0.3,
+                g: 0.8,
                 b: 0.4
             }
         )
         gsap.to(
             this.frame.material.uniforms.uSurfaceColor.value,
             {
-                duration: 4.0,
+                duration: 1.0,
                 ease: 'power1.out',
                 overwrite: true,
-                r: 0.3,
-                g: 0.4,
-                b: 0.3
+                r: 0.7,
+                g: 1.0,
+                b: 0.7
             }
         )
 
