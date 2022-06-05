@@ -55,9 +55,9 @@ export default class Chapters
                 duration: 1.0,
                 ease: 'power1.out',
                 overwrite: true,
-                r: 0.3373,
-                g: 0.5059,
-                b: 0.6
+                r: 0.58,
+                g: 0.40,
+                b: 0.0
             }
         )
         gsap.to(
@@ -66,9 +66,9 @@ export default class Chapters
                 duration: 1.0,
                 ease: 'power1.out',
                 overwrite: true,
-                r: 0.8235,
-                g: 0.7137,
-                b: 0.7137
+                r: 0.84,
+                g: 0.69,
+                b: 0.26,
             }
         )
 

@@ -35,8 +35,8 @@ export default class Frame
 
     setMaterial()
     {
-        this.debugObject.depthColor = '#568199'
-        this.debugObject.surfaceColor = '#d2b6b6'
+        this.debugObject.depthColor = 'rgb(148, 102, 0)'
+        this.debugObject.surfaceColor = 'rgb(214,176,67)'
 
         this.material = new THREE.ShaderMaterial(
             {
@@ -52,15 +52,15 @@ export default class Frame
                     uBigWavesFrequency: { value: new THREE.Vector3(0.07, 0.15, 1.0) },
                     uBigWavesSpeed: { value: 0.1 },
         
-                    uSmallWavesElevation: { value: 0.35 },
-                    uSmallWavesFrequency: { value: 0.3 },
+                    uSmallWavesElevation: { value: 0.96 },
+                    uSmallWavesFrequency: { value: 0.112 },
                     uSmallWavesSpeed: { value: 0.2 },
-                    uSmallWavesIterations: { value: 1 },
+                    uSmallWavesIterations: { value: 4 },
         
                     uDepthColor: { value: new THREE.Color(this.debugObject.depthColor)},
                     uSurfaceColor: { value: new THREE.Color(this.debugObject.surfaceColor)},
-                    uColorOffset: { value: 0.5 },
-                    uColorMultiplier: { value: 1.15 }
+                    uColorOffset: { value: 0.19 },
+                    uColorMultiplier: { value: 1.02 }
                 }
             }
         )
