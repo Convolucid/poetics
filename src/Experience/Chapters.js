@@ -1,5 +1,6 @@
 import gsap from 'gsap'
 import Experience from './Experience.js'
+import theWord from './World/theWord.js'
 
 export default class Chapters
 {
@@ -339,5 +340,10 @@ export default class Chapters
                 z: 0
             }
         )
+    }
+
+    article3()
+    {
+        theWord()
     }
 }

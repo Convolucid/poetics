@@ -16,7 +16,7 @@ let instance = null
 
 export default class Experience
 {
-    constructor(canvas)
+    constructor(canvas, canvas2)
     {
         if(instance)
         { 
@@ -30,16 +30,17 @@ export default class Experience
 
         // Canvas
         this.canvas = canvas
+        this.canvas2 = canvas2
 
         // Setup
         this.debug = new Debug()
         this.sizes = new Sizes()
         this.time = new Time()
+        this.scene = new THREE.Scene()
+        this.camera = new Camera()
         this.controls = new Controls()
         this.cssEffects = new CSSEffects()
-        this.scene = new THREE.Scene()
         this.resources = new Resources(sources)
-        this.camera = new Camera()
         this.renderer = new Renderer()
         this.raycaster = new Raycaster()
         this.world = new World()
@@ -54,7 +55,7 @@ export default class Experience
         })
 
         // Scrolling event
-        this.controls.on('scroll', () =>
+        this.sizes.on('scroll', () =>
         {
             this.scroll()
         })
@@ -78,7 +79,7 @@ export default class Experience
     scroll()
     {
         // Divide experience into scrollable sections
-        const currentSection = Math.round(this.controls.scrollY / (this.sizes.height)) + 1
+        const currentSection = Math.round(this.sizes.scrollY / (this.sizes.height)) + 1
         if(currentSection != this.section) 
         {
             this.section = currentSection
@@ -93,6 +94,9 @@ export default class Experience
                     break;
                 case 4:
                     this.chapters.article2()
+                    break;
+                case 6:
+                    this.chapters.article3()
                     break;
             }
         }
@@ -110,6 +114,7 @@ export default class Experience
         this.world.update()
         this.raycaster.update()
         this.renderer.update()
+        console.log(this.section)
     }
 
     destroy()

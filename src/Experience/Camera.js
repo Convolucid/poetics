@@ -94,7 +94,7 @@ export default class Camera
     scroll()
     {
         // scrollFactor allows a constant rate of scrolling regardless of window height and captures the total scrolled amount
-        this.instance.scrollFactor = (this.controls.scrollY / this.sizes.height) * 5
+        this.instance.scrollFactor = (this.sizes.scrollY / this.sizes.height) * 5
         this.setPosition()
     }
 

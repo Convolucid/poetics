@@ -40,6 +40,13 @@ export default class Sizes extends EventEmitter
             this.trigger('resize')
         })
 
+        this.scrollY = window.scrollY
+
+        window.addEventListener('scroll', () => {
+            this.scrollY = window.scrollY
+            this.trigger('scroll')
+        })
+
 
     }
 }

@@ -135,7 +135,10 @@ canvas#article2
     /* background-color: red; */
 }
 
-
+#canvas2
+{
+    z-index: -2;
+}
 
 
 /* Media Queries */
