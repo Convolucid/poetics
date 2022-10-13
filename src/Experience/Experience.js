@@ -114,7 +114,6 @@ export default class Experience
         this.world.update()
         this.raycaster.update()
         this.renderer.update()
-        console.log(this.section)
     }
 
     destroy()

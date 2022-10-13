@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import gsap from 'gsap'
 import Experience from '../Experience.js'
 import Effects from '../Effects/SubjectEffects.js'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 
 
@@ -25,7 +26,11 @@ export default class Subject
         }
 
         // Setup
-        this.resource = this.resources.items.lettersModel
+        this.loaders.gltfLoader = new GLTFLoader()
+
+
+        this.resource = this.loaders.gltfLoader.load('../../../static/models/Letters/Letters.glb')
+        console.log(this.resource);
         this.effects = new Effects()
 
         this.setModel()
