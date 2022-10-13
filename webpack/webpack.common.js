@@ -94,6 +94,12 @@ module.exports = {
                     filename: 'assets/images/[hash][ext]'
                 }
             },
+
+            // 3D Models
+            {
+                test: /\.(glb|gltf)$/i,
+                type: 'asset/resource'
+            },
             
             // Document files for downloading
             {

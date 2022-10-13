@@ -12,12 +12,9 @@ export default class Chapters
         this.renderer = this.experience.renderer
         this.resources = this.experience.resources
 
-        this.resources.on('ready', ()=>
-        {
-            this.frame = this.experience.world.frame
-            this.subject = this.experience.world.subject
-        })
 
+        this.frame = this.experience.world.frame
+        this.subject = this.experience.world.subject
     }
 
     // Section 1

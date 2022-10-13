@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import gsap from 'gsap'
 import Experience from '../Experience.js'
 import Effects from '../Effects/SubjectEffects.js'
+import lettersGLB from '../../../static/models/Letters/Letters.glb'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 
@@ -26,18 +27,24 @@ export default class Subject
         }
 
         // Setup
-        this.loaders.gltfLoader = new GLTFLoader()
+        const loader = new GLTFLoader()
 
+        loader.load(
+            lettersGLB,
+            (obj) => {
+                this.resource = obj
+                this.setModel()
+            }
+        )
 
-        this.resource = this.loaders.gltfLoader.load('../../../static/models/Letters/Letters.glb')
-        console.log(this.resource);
         this.effects = new Effects()
 
-        this.setModel()
+        // this.setModel()
     }
 
     setModel()
     {
+        this.resourceLoaded = true;
         this.model = this.resource.scene
 
         this.meshArray = []
@@ -102,28 +109,28 @@ export default class Subject
 
     resize()
     {
-
-
         // Adjust Subject starting position based on XS responsive breakpoint
-        for(let i=0; i < this.meshArray.length; i++)
-        {
-            if(this.sizes.responsiveXS === true)
+        if(this.resourceLoaded == true){
+            for(let i=0; i < this.meshArray.length; i++)
             {
-                if(i <= 5)
+                if(this.sizes.responsiveXS === true)
                 {
-                    this.meshArray[i].position.x = this.meshArray[i].startingPositionX + 5
-                    this.meshArray[i].position.y = this.meshArray[i].startingPositionY + 2.5
+                    if(i <= 5)
+                    {
+                        this.meshArray[i].position.x = this.meshArray[i].startingPositionX + 5
+                        this.meshArray[i].position.y = this.meshArray[i].startingPositionY + 2.5
+                    }
+                    else
+                    {
+                        this.meshArray[i].position.x = this.meshArray[i].startingPositionX - 5
+                        this.meshArray[i].position.y = this.meshArray[i].startingPositionY - 2.5
+                    }
                 }
                 else
                 {
-                    this.meshArray[i].position.x = this.meshArray[i].startingPositionX - 5
-                    this.meshArray[i].position.y = this.meshArray[i].startingPositionY - 2.5
+                    this.meshArray[i].position.x = this.meshArray[i].startingPositionX
+                    this.meshArray[i].position.y = this.meshArray[i].startingPositionY
                 }
-            }
-            else
-            {
-                this.meshArray[i].position.x = this.meshArray[i].startingPositionX
-                this.meshArray[i].position.y = this.meshArray[i].startingPositionY
             }
         }
     }
@@ -135,39 +142,41 @@ export default class Subject
 
     update()
     {
-        for(let i = 0; i < this.meshArray.length; i++)
-        {
-
-            if(this.meshArray[i].clickActivated === true)
+        if(this.resourceLoaded == true){
+            for(let i = 0; i < this.meshArray.length; i++)
             {
-                // let tweenStartTime = this.meshArray[0].tweenStartTime
-                let tweenElapsedTime = this.experience.time.current - this.meshArray[i].tweenStartTime;
 
-                if(tweenElapsedTime > 200)
+                if(this.meshArray[i].clickActivated === true)
                 {
-                    this.meshArray[i].tweenStartTime = this.experience.time.current
+                    // let tweenStartTime = this.meshArray[0].tweenStartTime
+                    let tweenElapsedTime = this.experience.time.current - this.meshArray[i].tweenStartTime;
 
-                    this.effects.trailingMesh(this.meshArray[i])
-                }            
+                    if(tweenElapsedTime > 200)
+                    {
+                        this.meshArray[i].tweenStartTime = this.experience.time.current
+
+                        this.effects.trailingMesh(this.meshArray[i])
+                    }            
+                }
+
+                if(this.meshArray[i].clickActivated === false)
+                {
+                    let randomMovement = this.meshArray[i].randomMovementModifier
+                    let randomSpeed = this.meshArray[i].randomSpeedModifier
+
+                    this.meshArray[i].position.x += 
+                        Math.sin(experience.time.elapsed * 0.001 * randomSpeed * this.model.speedModifier) * randomMovement * this.model.movementModifierX * 0.0001
+                    ;
+                    this.meshArray[i].position.y += 
+                        Math.cos(experience.time.elapsed * 0.0005 * randomSpeed * this.model.speedModifier) * randomMovement * this.model.movementModifierY * 0.0001
+                    ;
+                    this.meshArray[i].position.z += 
+                        Math.sin(experience.time.elapsed * 0.002 * randomSpeed * this.model.speedModifier) * randomMovement * this.model.movementModifierZ * 0.0001
+                    ;
+                }
+
+                this.effects.update(this.meshArray[i]);
             }
-
-            if(this.meshArray[i].clickActivated === false)
-            {
-                let randomMovement = this.meshArray[i].randomMovementModifier
-                let randomSpeed = this.meshArray[i].randomSpeedModifier
-
-                this.meshArray[i].position.x += 
-                    Math.sin(experience.time.elapsed * 0.001 * randomSpeed * this.model.speedModifier) * randomMovement * this.model.movementModifierX * 0.0001
-                ;
-                this.meshArray[i].position.y += 
-                    Math.cos(experience.time.elapsed * 0.0005 * randomSpeed * this.model.speedModifier) * randomMovement * this.model.movementModifierY * 0.0001
-                ;
-                this.meshArray[i].position.z += 
-                    Math.sin(experience.time.elapsed * 0.002 * randomSpeed * this.model.speedModifier) * randomMovement * this.model.movementModifierZ * 0.0001
-                ;
-            }
-
-            this.effects.update(this.meshArray[i]);
         }
     }
 

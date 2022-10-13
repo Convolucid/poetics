@@ -11,13 +11,12 @@ export default class World
         this.scene = this.experience.scene
         this.resources = this.experience.resources
 
-        this.resources.on('ready', () =>
-        {
-            // Setup
-            this.frame = new Frame()
-            this.subject = new Subject()
-            this.environment = new Environment()
-        })
+
+        // Setup
+        this.frame = new Frame()
+        this.subject = new Subject()
+        this.environment = new Environment()
+
 
 
     }
