@@ -35,6 +35,8 @@ export default class Experience
         this.canvas = canvas
         this.canvas2 = canvas2
 
+
+
         // Setup
         // New architecture will assign canvas to World classes, which will each have their own camera, renderer, and scenes.
 
@@ -50,9 +52,15 @@ export default class Experience
         this.resources = new Resources(sources)
         this.renderer = new Renderer()
         this.raycaster = new Raycaster()
+
+
+
+
         this.world = new World()
-        this.world1 = new TestWorld(this.canvas2, world1())
-        // this.world2 = new TestWorld(this.canvas2, world2())
+
+        this.loadWorlds()
+
+
         this.chapters = new Chapters()
 
         this.section = 1
@@ -77,13 +85,27 @@ export default class Experience
         
     }
 
+    async loadWorlds()
+    {
+        const worldOne = await world1()
+
+        console.log(worldOne)
+
+        this.world1 = new TestWorld(this.canvas2, worldOne)
+        // this.world2 = new TestWorld(this.canvas2, world2())
+    }
+
     resize()
     {
         this.cssEffects.resize()
         this.world.resize()
         this.camera.resize()
         this.renderer.resize()
-        this.world1.resize()
+        
+        if(this.world1)
+        {
+            this.world1.resize()
+        }
     }
 
     scroll()
@@ -125,7 +147,10 @@ export default class Experience
         this.raycaster.update()
         this.renderer.update()
 
-        this.world1.update()
+        if(this.world1)
+        {
+            this.world1.update()
+        }
     }
 
     destroy()

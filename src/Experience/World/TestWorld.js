@@ -37,11 +37,17 @@ export default class World
 
     resize()
     {
+        this.camera.resize()
         this.renderer.resize()
+        for(let i = 0; i < this.contents.length; i++)
+        {
+            this.contents[i].resize ? this.contents[i].resize() : false
+        }
     }
 
     update()
     {
+        this.camera.update()
         this.renderer.update()
         for(let i = 0; i < this.contents.length; i++)
         {
