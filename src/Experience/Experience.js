@@ -7,6 +7,7 @@ import Camera from "./Camera.js"
 import Raycaster from "./Raycaster.js"
 import Renderer from './Renderer.js'
 import World from './World/World.js'
+import world1 from './World/world1.js'
 import world2 from './World/world2.js'
 import TestWorld from './World/TestWorld.js'
 import Resources from './Utils/Resources.js'
@@ -50,7 +51,8 @@ export default class Experience
         this.renderer = new Renderer()
         this.raycaster = new Raycaster()
         this.world = new World()
-        this.world2 = new TestWorld(this.canvas2, world2())
+        this.world1 = new TestWorld(this.canvas2, world1())
+        // this.world2 = new TestWorld(this.canvas2, world2())
         this.chapters = new Chapters()
 
         this.section = 1
@@ -81,7 +83,7 @@ export default class Experience
         this.world.resize()
         this.camera.resize()
         this.renderer.resize()
-        this.world2.resize()
+        this.world1.resize()
     }
 
     scroll()
@@ -123,7 +125,7 @@ export default class Experience
         this.raycaster.update()
         this.renderer.update()
 
-        this.world2.update()
+        this.world1.update()
     }
 
     destroy()

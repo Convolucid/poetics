@@ -45,7 +45,7 @@ export default class World
         this.renderer.update()
         for(let i = 0; i < this.contents.length; i++)
         {
-            this.contents[i].update() ? this.contents[i].update() : false
+            this.contents[i].update ? this.contents[i].update() : false
         }
     }
 }
