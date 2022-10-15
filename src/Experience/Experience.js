@@ -7,6 +7,8 @@ import Camera from "./Camera.js"
 import Raycaster from "./Raycaster.js"
 import Renderer from './Renderer.js'
 import World from './World/World.js'
+import world2 from './World/world2.js'
+import TestWorld from './World/TestWorld.js'
 import Resources from './Utils/Resources.js'
 import sources from './World/sources.js'
 import Chapters from './Chapters.js'
@@ -33,9 +35,13 @@ export default class Experience
         this.canvas2 = canvas2
 
         // Setup
+        // New architecture will assign canvas to World classes, which will each have their own camera, renderer, and scenes.
+
         this.debug = new Debug()
         this.sizes = new Sizes()
         this.time = new Time()
+
+
         this.scene = new THREE.Scene()
         this.camera = new Camera()
         this.controls = new Controls()
@@ -44,6 +50,7 @@ export default class Experience
         this.renderer = new Renderer()
         this.raycaster = new Raycaster()
         this.world = new World()
+        this.world2 = new TestWorld(this.canvas2, world2())
         this.chapters = new Chapters()
 
         this.section = 1
@@ -74,6 +81,7 @@ export default class Experience
         this.world.resize()
         this.camera.resize()
         this.renderer.resize()
+        this.world2.resize()
     }
 
     scroll()
@@ -114,6 +122,8 @@ export default class Experience
         this.world.update()
         this.raycaster.update()
         this.renderer.update()
+
+        this.world2.update()
     }
 
     destroy()

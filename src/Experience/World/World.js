@@ -1,6 +1,6 @@
 import Experience from "../Experience";
 import Environment from './Environment.js';
-import Frame from './Frame';
+import Frame from './Frame.js';
 import Subject from './Subject.js'
 
 export default class World

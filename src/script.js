@@ -13,4 +13,7 @@ function component(htmlStructure) {
 const bodyHTML = component(html);
 document.body.appendChild(bodyHTML);
 
-const experience = new Experience(document.getElementById('canvas1'), document.getElementById('canvas2'))
+const canvas1 = document.getElementById('canvas1');
+const canvas2 = document.getElementById('canvas2');
+
+const experience = new Experience(canvas1, canvas2);

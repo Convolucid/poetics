@@ -3,14 +3,21 @@ import Experience from './Experience.js'
 
 export default class Renderer
 {
-    constructor()
+    constructor(world)
     {
         this.experience = new Experience()
-        this.canvas = this.experience.canvas
         this.sizes = this.experience.sizes
-        this.scene = this.experience.scene
-        this.camera = this.experience.camera
         this.debug = this.experience.debug
+
+        if(world) {
+            this.canvas = world.canvas
+            this.camera = world.camera
+            this.scene = world.scene
+        } else {
+            this.canvas = this.experience.canvas
+            this.camera = this.experience.camera
+            this.scene = this.experience.scene
+        }
 
         if(this.debug.active)
         {
