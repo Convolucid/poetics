@@ -26,33 +26,44 @@ export default class World
         }
 
         this.contents = contents
+        this.active = false;
     }
 
     scroll()
     {
-        for(let i = 0; i < this.contents.length; i++)
+        if(this.active == true)
         {
-            this.contents[i].scroll ? this.contents[i].scroll() : false
+            this.camera.scroll()
+            for(let i = 0; i < this.contents.length; i++)
+            {
+                this.contents[i].scroll ? this.contents[i].scroll() : false
+            }
         }
     }
 
     resize()
     {
-        this.camera.resize()
-        this.renderer.resize()
-        for(let i = 0; i < this.contents.length; i++)
+        if(this.active == true)
         {
-            this.contents[i].resize ? this.contents[i].resize() : false
+            this.camera.resize()
+            this.renderer.resize()
+            for(let i = 0; i < this.contents.length; i++)
+            {
+                this.contents[i].resize ? this.contents[i].resize() : false
+            }
         }
     }
 
     update()
     {
-        this.camera.update()
-        this.renderer.update()
-        for(let i = 0; i < this.contents.length; i++)
+        if(this.active == true)
         {
-            this.contents[i].update ? this.contents[i].update() : false
+            this.camera.update()
+            this.renderer.update()
+            for(let i = 0; i < this.contents.length; i++)
+            {
+                this.contents[i].update ? this.contents[i].update() : false
+            }
         }
     }
 }

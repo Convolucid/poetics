@@ -29,6 +29,6 @@ export default class Controls
 
         })
 
-        this.orbit = new OrbitControls(this.camera, this.canvas)
+        // this.orbit = new OrbitControls(this.camera, this.canvas)
     }
 }

@@ -140,10 +140,14 @@ canvas#article2
     /* background-color: red; */
 }
 
-#canvas2
+.z-bottom-canvas 
 {
     z-index: -10;
-    /* background-color: red; */
+}
+
+.z-top-canvas 
+{
+    z-index: 0;
 }
 
 
