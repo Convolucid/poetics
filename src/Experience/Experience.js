@@ -37,7 +37,7 @@ export default class Experience
 
         this.debug = new Debug()
         this.sizes = new Sizes()
-        this.time = new Time(this.update)
+        this.time = new Time()
         
         this.cssEffects = new CSSEffects()
 
@@ -46,12 +46,6 @@ export default class Experience
 
 
         this.section = 1
-
-        // Sizes resize event
-        // this.sizes.on('resize', () =>
-        // {
-        //     this.resize()
-        // })
 
         // Scrolling event
         window.addEventListener('scroll', () =>
