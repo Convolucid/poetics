@@ -2,10 +2,6 @@ import * as THREE from 'three'
 import Sizes from "./Utils/Sizes.js"
 import Time from "./Utils/Time.js"
 import CSSEffects from "./Effects/CSSEffects.js"
-import Controls from "./Utils/Controls.js"
-import Camera from "./Camera.js"
-import Raycaster from "./Raycaster.js"
-import Renderer from './Renderer.js'
 import World from './World/World.js'
 
 import world1 from './World/world1.js'
@@ -13,7 +9,6 @@ import world2 from './World/world2.js'
 import Chapters from './Chapters.js'
 
 import Debug from './Utils/Debug.js'
-import { TorusGeometry } from 'three'
 
 let instance = null
 
@@ -53,15 +48,20 @@ export default class Experience
         this.section = 1
 
         // Sizes resize event
-        this.sizes.on('resize', () =>
-        {
-            this.resize()
-        })
+        // this.sizes.on('resize', () =>
+        // {
+        //     this.resize()
+        // })
 
         // Scrolling event
-        this.sizes.on('scroll', () =>
+        window.addEventListener('scroll', () =>
         {
             this.scroll()
+        })
+
+        window.addEventListener('resize', () =>
+        {
+            this.resize()
         })
 
         window.requestAnimationFrame(() =>
@@ -110,6 +110,7 @@ export default class Experience
 
     resize()
     {
+        this.sizes.resize()
         this.cssEffects.resize()
 
         this.world1 ? this.world1.resize() : false
@@ -118,6 +119,8 @@ export default class Experience
 
     scroll()
     {
+
+        this.sizes.scroll()
         // Divide experience into scrollable sections
         const currentSection = Math.round(this.sizes.scrollY / (this.sizes.height)) + 1
         if(currentSection != this.section) 
