@@ -1,11 +1,11 @@
 import * as THREE from 'three'
-import Environment from './Environment.js';
-import Frame2 from './Frame2.js';
-import Subject from './Subject.js'
 
-export default function world2()
+import Frame from './Frame.js';
+
+
+export default async function world2()
 {
-    const frame = new Frame2()
+    const frame = new Frame()
     
     // console.log(frame)
     // const subject = new Subject()

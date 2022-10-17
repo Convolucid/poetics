@@ -3,11 +3,19 @@ import Experience from './Experience'
 
 export default class Raycaster
 {
-    constructor()
+    constructor(world)
     {
         this.experience = new Experience()
-        this.controls = this.experience.controls.instance
-        this.camera = this.experience.camera.instance
+
+        if(world) {
+            this.canvas = world.canvas
+            this.controls = world.controls
+            this.camera = world.camera.instance
+        } else {
+            this.canvas = this.experience.canvas
+            this.controls = this.experience.controls
+            this.camera = this.experience.camera.instance
+        }
 
         this.setInstance()
     }

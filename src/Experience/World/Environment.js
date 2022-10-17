@@ -6,7 +6,7 @@ export default class Environment
     constructor()
     {
         this.experience = new Experience()
-        this.scene = this.experience.scene
+        // this.scene = this.experience.scene
         this.resources = this.experience.resources
         this.debug = this.experience.debug
 
@@ -30,7 +30,7 @@ export default class Environment
         // this.sunLight.shadow.mapSize.set(1024, 1024)
         // this.sunLight.shadow.normalBias = 0.05
         this.sunLight.position.set(-5, 2, 5)
-        this.scene.add(this.sunLight)
+        // this.scene.add(this.sunLight)
 
         // Debug
         if(this.debug.active)

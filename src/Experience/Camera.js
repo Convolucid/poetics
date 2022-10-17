@@ -3,14 +3,22 @@ import Experience from './Experience.js'
 
 export default class Camera
 {
-    constructor()
+    constructor(world)
     {
         this.experience = new Experience()
         this.sizes = this.experience.sizes
-        this.scene = this.experience.scene
-        this.canvas = this.experience.canvas
-        this.controls = this.experience.controls
+
+
+
         this.debug = this.experience.debug
+
+        if(world) {
+            this.canvas = world.canvas
+            this.scene = world.scene
+        } else {
+            this.canvas = this.experience.canvas
+            this.scene = this.experience.scene
+        }
 
         if(this.debug.active)
         {

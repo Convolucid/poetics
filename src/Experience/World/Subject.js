@@ -12,7 +12,7 @@ export default class Subject
     constructor()
     {
         this.experience = new Experience()
-        this.scene = this.experience.scene
+        // this.scene = this.experience.scene
         this.resources = this.experience.resources
         this.sizes = this.experience.sizes
         this.time = this.experience.time
@@ -27,25 +27,27 @@ export default class Subject
         }
 
         // Setup
-        const loader = new GLTFLoader()
-
-        loader.load(
-            lettersGLB,
-            (obj) => {
-                this.resource = obj
-                this.setModel()
-            }
-        )
+        this.loader = new GLTFLoader()
 
         this.effects = new Effects()
 
-        // this.setModel()
+
+
+    }
+
+    async load()
+    {
+        this.resource = await this.loader.loadAsync(lettersGLB)
+        this.setModel()
     }
 
     setModel()
     {
         this.resourceLoaded = true;
         this.model = this.resource.scene
+
+        this.model.resize = () => this.resize()
+        this.model.update = () => this.update()
 
         this.meshArray = []
         this.model.traverse((child) =>
@@ -66,7 +68,7 @@ export default class Subject
                 this.clickActivation(this.meshArray[i])
             }
 
-            this.setAsRaycastObject(this.meshArray[i])
+            // this.setAsRaycastObject(this.meshArray[i])
 
             // Set individual random modifiers to movement
             this.meshArray[i].randomMovementModifier = Math.random()
@@ -87,7 +89,7 @@ export default class Subject
 
         this.resize()
 
-        this.scene.add(this.model)
+        // this.scene.add(this.model)
 
         // Debug
         if(this.debug.active)

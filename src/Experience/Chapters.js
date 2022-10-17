@@ -8,13 +8,11 @@ export default class Chapters
     {
         this.experience = new Experience()
         this.cssEffects = this.experience.cssEffects
-        this.camera = this.experience.camera
-        this.renderer = this.experience.renderer
-        this.resources = this.experience.resources
+        this.camera = this.experience.world1.camera
+        this.renderer = this.experience.world1.renderer
 
-
-        this.frame = this.experience.world.frame
-        this.subject = this.experience.world.subject
+        this.frame = this.experience.world1.contents[0]
+        this.subject = this.experience.world1.contents[1]
     }
 
     // Section 1
@@ -102,7 +100,7 @@ export default class Chapters
 
         // Subject
         gsap.to(
-            this.subject.model.position,
+            this.subject.position,
             {
                 duration: 1.5,
                 ease: 'power2.inOut',
@@ -113,7 +111,7 @@ export default class Chapters
             }
         )
         gsap.to(
-            this.subject.model.rotation,
+            this.subject.rotation,
             {
                 duration: 1.5,
                 ease: 'power2.inOut',
@@ -121,14 +119,6 @@ export default class Chapters
                 x: 0,
                 y: 0,
                 z: 0
-            }
-        )
-        gsap.to(
-            this.subject.meshArray[0].material,
-            {
-                duration: 1,
-                overwrite: true,
-                metalness: 1
             }
         )
     }
@@ -327,7 +317,7 @@ export default class Chapters
 
         // Subject
         gsap.to(
-            this.subject.model.rotation,
+            this.subject.rotation,
             {
                 duration: 3,
                 ease: 'power2.out',
@@ -337,10 +327,5 @@ export default class Chapters
                 z: 0
             }
         )
-    }
-
-    article3()
-    {
-        theWord()
     }
 }

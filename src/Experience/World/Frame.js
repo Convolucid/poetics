@@ -1,24 +1,23 @@
 import * as THREE from 'three'
-import gsap from 'gsap'
 import Experience from '../Experience.js'
 import oceanVertexShader from '../shaders/ocean/vertex.glsl';
 import oceanFragmentShader from '../shaders/ocean/fragment.glsl';
 
-export default class Frame
+export default class Frame2
 {
     constructor()
     {
         this.experience = new Experience()
-        this.scene = this.experience.scene
+        // this.scene = this.experience.scene
         this.time = this.experience.time
-        this.debug = this.experience.debug
+        // this.debug = this.experience.debug
         this.debugObject = {}
 
-        if(this.debug.active)
-        {
-            this.debugFolder = this.debug.ui.addFolder('Hallucination')
-            this.debugFolder.close()
-        }
+        // if(this.debug.active)
+        // {
+        //     this.debugFolder = this.debug.ui.addFolder('Hallucination')
+        //     this.debugFolder.close()
+        // }
 
         this.setGeometry()
         this.setMaterial()
@@ -66,43 +65,44 @@ export default class Frame
         )
 
         // Debug
-        if(this.debug.active)
-        {
-            this.debugFolder.add(this.material.uniforms.uBigWavesElevation, 'value').min(0).max(10).step(0.001).name('uBigWavesElevation')
-            this.debugFolder.add(this.material.uniforms.uBigWavesFrequency.value, 'x').min(0).max(1).step(0.001).name('uBigWavesFrequencyX')
-            this.debugFolder.add(this.material.uniforms.uBigWavesFrequency.value, 'y').min(0).max(1).step(0.001).name('uBigWavesFrequencyY')
-            this.debugFolder.add(this.material.uniforms.uBigWavesSpeed, 'value').min(0).max(2).step(0.001).name('uBigWavesSpeed')
-            this.debugFolder
-                .addColor(this.debugObject, 'surfaceColor').name('surfaceColor')
-                .onChange(() =>
-                {
-                    this.material.uniforms.uSurfaceColor.value.set(this.debugObject.surfaceColor)
-                })
-            this.debugFolder
-                .addColor(this.debugObject, 'depthColor').name('depthColor')
-                .onChange(() =>
-                {
-                    this.material.uniforms.uDepthColor.value.set(this.debugObject.depthColor)
-                })
-            this.debugFolder.add(this.material.uniforms.uColorOffset, 'value').min(0).max(4).step(0.001).name('uColorOffset')
-            this.debugFolder.add(this.material.uniforms.uColorMultiplier, 'value').min(0).max(10).step(0.001).name('uColorMultiplier')
-            this.debugFolder.add(this.material.uniforms.uSmallWavesElevation, 'value').min(0).max(10).step(0.001).name('uSmallWavesElevation')
-            this.debugFolder.add(this.material.uniforms.uSmallWavesFrequency, 'value').min(0).max(2).step(0.001).name('uSmallWavesFrequency')
-            this.debugFolder.add(this.material.uniforms.uSmallWavesSpeed, 'value').min(0).max(4).step(0.001).name('uSmallWavesSpeed')
-            this.debugFolder.add(this.material.uniforms.uSmallWavesIterations, 'value').min(0).max(5).step(1).name('uSmallWavesIterations')
-        }
+        // if(this.debug.active)
+        // {
+        //     this.debugFolder.add(this.material.uniforms.uBigWavesElevation, 'value').min(0).max(10).step(0.001).name('uBigWavesElevation')
+        //     this.debugFolder.add(this.material.uniforms.uBigWavesFrequency.value, 'x').min(0).max(1).step(0.001).name('uBigWavesFrequencyX')
+        //     this.debugFolder.add(this.material.uniforms.uBigWavesFrequency.value, 'y').min(0).max(1).step(0.001).name('uBigWavesFrequencyY')
+        //     this.debugFolder.add(this.material.uniforms.uBigWavesSpeed, 'value').min(0).max(2).step(0.001).name('uBigWavesSpeed')
+        //     this.debugFolder
+        //         .addColor(this.debugObject, 'surfaceColor').name('surfaceColor')
+        //         .onChange(() =>
+        //         {
+        //             this.material.uniforms.uSurfaceColor.value.set(this.debugObject.surfaceColor)
+        //         })
+        //     this.debugFolder
+        //         .addColor(this.debugObject, 'depthColor').name('depthColor')
+        //         .onChange(() =>
+        //         {
+        //             this.material.uniforms.uDepthColor.value.set(this.debugObject.depthColor)
+        //         })
+        //     this.debugFolder.add(this.material.uniforms.uColorOffset, 'value').min(0).max(4).step(0.001).name('uColorOffset')
+        //     this.debugFolder.add(this.material.uniforms.uColorMultiplier, 'value').min(0).max(10).step(0.001).name('uColorMultiplier')
+        //     this.debugFolder.add(this.material.uniforms.uSmallWavesElevation, 'value').min(0).max(10).step(0.001).name('uSmallWavesElevation')
+        //     this.debugFolder.add(this.material.uniforms.uSmallWavesFrequency, 'value').min(0).max(2).step(0.001).name('uSmallWavesFrequency')
+        //     this.debugFolder.add(this.material.uniforms.uSmallWavesSpeed, 'value').min(0).max(4).step(0.001).name('uSmallWavesSpeed')
+        //     this.debugFolder.add(this.material.uniforms.uSmallWavesIterations, 'value').min(0).max(5).step(1).name('uSmallWavesIterations')
+        // }
     }
 
     setMesh()
     {
         this.mesh = new THREE.Mesh(this.geometry, this.material)
         this.mesh.receiveShadow = false
-        this.scene.add(this.mesh)
+        this.mesh.update = () => {this.update()}
+        // this.scene.add(this.mesh)
     }
 
     setAsRaycastObject()
     {
-        this.experience.raycaster.raycastObjects.push(this.mesh)
+        // this.experience.raycaster.raycastObjects.push(this.mesh)
     }
 
     scroll()

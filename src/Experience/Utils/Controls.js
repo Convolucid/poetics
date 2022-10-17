@@ -1,19 +1,24 @@
 import * as THREE from 'three'
 import Experience from "../Experience";
-import EventEmitter from './EventEmitter.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 
-export default class Controls extends EventEmitter
+export default class Controls
 {
-    constructor()
+    constructor(world)
     {
-        super()
-
         this.experience = new Experience()
         this.sizes = this.experience.sizes
-        this.camera = this.experience.camera.instance
-        this.canvas = this.experience.canvas
+        // this.camera = this.experience.camera.instance
+        // this.canvas = this.experience.canvas
+
+        if(world) {
+            this.canvas = world.canvas
+            this.camera = world.camera.instance
+        } else {
+            this.canvas = this.experience.canvas
+            this.camera = this.experience.camera.instance
+        }
 
         this.instance = new THREE.Vector2()
 
@@ -25,7 +30,5 @@ export default class Controls extends EventEmitter
         })
 
         this.orbit = new OrbitControls(this.camera, this.canvas)
-
-
     }
 }
