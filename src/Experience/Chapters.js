@@ -1,6 +1,5 @@
 import gsap from 'gsap'
 import Experience from './Experience.js'
-import theWord from './World/theWord.js'
 
 export default class Chapters
 {
