@@ -75,6 +75,8 @@ export default class Experience
 
         const worldTwo = await world2()
         this.world2 = new World(this.canvas2, worldTwo)
+        this.world2.scene.fog = worldTwo.fog
+        this.world2.scene.background = worldTwo.background
         this.world2.active = false
 
         document.body.addEventListener('click', () => {this.changeWorld()})
