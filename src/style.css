@@ -114,7 +114,11 @@ article > div
     padding-bottom: 2%;
 }
 
-
+.articleContainer p {
+    padding: 15px 30px;
+    min-width: 300px;
+    /* flex: 1 1 auto; */
+}
 
 
 
