@@ -161,33 +161,33 @@ canvas#article2
 
 @keyframes z-anim-canvas {
     0% {
-        z-index: -10;
         max-width: 100%;
         max-height: 100%;
         min-height: 100vh;
         top: 0;
         left: 0;
         transform: rotate(0deg);
+        z-index: -10;
     }
     1% {
-        z-index: -10;
         max-width: 1%;
         max-height: 1%;
         min-height: 1vh;
         top: 50%;
         left: 50%;
         transform: rotate(180deg);
-
+        z-index: -10;
+        
         box-shadow: 0px 0px 50px 30px white;
     }
     100% {
-        z-index: 0;
         max-width: 100%;
         max-height: 100%;
         min-height: 100vh;
         top: 0;
         left: 0;
         transform: rotate(360deg);
+        z-index: 0;
 
         box-shadow: 0px 0px 50px 0px white;
     }
@@ -197,6 +197,8 @@ canvas#article2
 {
     animation-name: z-anim-canvas;
     animation-duration: 3s;
+    animation-play-state: paused;
+    z-index: 0;
 }
 
 

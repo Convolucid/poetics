@@ -76,6 +76,9 @@ export default class Experience {
     }
 
     changeWorld() {
+        this.canvas.style.animationPlayState="running"
+        this.canvas2.style.animationPlayState="running"
+
         if (this.world1.active) {
             this.world2.active = true;
             this.world2.resize();
