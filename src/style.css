@@ -144,14 +144,59 @@ canvas#article2
     /* background-color: red; */
 }
 
+.z-control-background {
+    opacity: 0;
+    transition: 3s;
+}
+
+.z-control-foreground {
+    opacity: 1;
+    transition: 3s;
+}
+
 .z-bottom-canvas 
 {
     z-index: -10;
 }
 
+@keyframes z-anim-canvas {
+    0% {
+        z-index: -10;
+        max-width: 100%;
+        max-height: 100%;
+        min-height: 100vh;
+        top: 0;
+        left: 0;
+        transform: rotate(0deg);
+    }
+    1% {
+        z-index: -10;
+        max-width: 1%;
+        max-height: 1%;
+        min-height: 1vh;
+        top: 50%;
+        left: 50%;
+        transform: rotate(180deg);
+
+        box-shadow: 0px 0px 50px 30px white;
+    }
+    100% {
+        z-index: 0;
+        max-width: 100%;
+        max-height: 100%;
+        min-height: 100vh;
+        top: 0;
+        left: 0;
+        transform: rotate(360deg);
+
+        box-shadow: 0px 0px 50px 0px white;
+    }
+}
+
 .z-top-canvas 
 {
-    z-index: 0;
+    animation-name: z-anim-canvas;
+    animation-duration: 3s;
 }
 
 
