@@ -1,8 +1,8 @@
 import * as THREE from 'three'
-import Controls from "../Utils/Controls.js"
-import Camera from "../Camera.js"
-import Raycaster from "../Raycaster.js"
-import Renderer from '../Renderer.js'
+import Controls from "./utils/Controls.js"
+import Camera from "./Camera.js"
+import Raycaster from "./Raycaster.js"
+import Renderer from './Renderer.js'
 
 export default class World
 {

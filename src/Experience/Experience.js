@@ -1,14 +1,14 @@
 import * as THREE from 'three'
-import Sizes from "./Utils/Sizes.js"
-import Time from "./Utils/Time.js"
-import CSSEffects from "./Effects/CSSEffects.js"
-import World from './World/World.js'
+import Sizes from "./utils/Sizes.js"
+import Time from "./utils/Time.js"
+import CSSEffects from "./effects/CSSEffects.js"
+import World from './World.js'
 
-import world1 from './World/world1.js'
-import world2 from './World/world2.js'
+import world1 from './worlds/world1.js'
+import world2 from './worlds/world2.js'
 import Chapters from './Chapters.js'
 
-import Debug from './Utils/Debug.js'
+import Debug from './utils/Debug.js'
 
 let instance = null
 
