@@ -7,7 +7,7 @@ Synecdoche: the brains of the operation.
 This skull is made of wax
 And every fissure is a wick
 Molded lard as thick as thieves,
-And lecithin from mashed-up brains
+And lecithin from mashed-up minds
 Tans my taxidermied hide.
 
 I should have used sunscreen,
