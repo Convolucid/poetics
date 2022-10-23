@@ -114,7 +114,7 @@ export default class Experience {
 
     resize() {
         this.sizes.resize();
-        this.cssEffects.resize();
+        this.cssEffects ? this.cssEffects.resize() : false;
 
         this.world1 ? this.world1.resize() : false;
         this.world2 ? this.world2.resize() : false;

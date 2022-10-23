@@ -24,18 +24,12 @@ export default class CSSEffects
             // Toggle loadingComplete to begin animating clouds in update function
             this.loadingComplete = false;
 
-            window.addEventListener('load', (event) =>
-            {
-                this.createClouds(this.title)
-                this.createClouds(this.article1)
-                this.createClouds(this.article2)
-                this.loadingComplete = true;
-            })
 
+            this.createClouds(this.title)
+            this.createClouds(this.article1)
+            this.createClouds(this.article2)
+            this.loadingComplete = true;
         }
-
-
-
     }
 
     randInt(min, max) {
@@ -146,15 +140,8 @@ export default class CSSEffects
 
     update()
     {
-        if(this.loadingComplete === true)
-        {
-            this.drawClouds(this.title)
-            this.drawClouds(this.article1)
-            this.drawClouds(this.article2)
-        }
-
+        this.drawClouds(this.title)
+        this.drawClouds(this.article1)
+        this.drawClouds(this.article2)
     }
-
-
-
 }
