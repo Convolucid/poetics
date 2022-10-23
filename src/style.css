@@ -59,7 +59,7 @@
 .z-top-canvas 
 {
     z-index: 0;
-    animation-name: z-anim-canvas;
+    /* animation-name: z-anim-canvas;
     animation-duration: 3s;
-    animation-play-state: paused;
+    animation-play-state: paused; */
 }

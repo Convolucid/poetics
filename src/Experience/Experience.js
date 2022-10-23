@@ -44,8 +44,8 @@ export default class Experience {
 
 
         // this.cssEffects = new CSSEffects();
-        this.textContent = document.getElementById('z-control')
-        this.titleWorld = document.getElementById('titleWorld')
+        // this.textContent = document.getElementById('z-control')
+        // this.titleWorld = document.getElementById('titleWorld')
         this.section = 1;
 
         // Scroll, resize, and update functions.  Experience functions run the active World's functions.
@@ -74,7 +74,7 @@ export default class Experience {
         this.world2 = new World(this.canvas2, worldTwo);
         this.world2.scene.fog = worldTwo.fog;
         this.world2.scene.background = worldTwo.background;
-        this.world2.active = false;
+        // this.world2.active = false;
 
         this.worldArray = [
             this.world1,
@@ -82,7 +82,7 @@ export default class Experience {
         ]
 
         document.body.addEventListener("click", () => {
-            if(this.world1.active) {
+            if(this.world1.active == true) {
                 this.changeWorld(this.world2);
             } else {
                 this.changeWorld(this.world1);
@@ -90,23 +90,21 @@ export default class Experience {
         });
     }
 
-    changeWorld(world) {
+    changeWorld(destination) {
         // Enable canvas animations
-        this.canvas.style.animationPlayState="running"
-        this.canvas2.style.animationPlayState="running"
+        // this.canvas.style.animationPlayState="running"
+        // this.canvas2.style.animationPlayState="running"
 
         // Switch between active worlds
         for(let i = 0; i < this.worldArray.length; i++)
         {
-            const destination = this.worldArray[i]
-
-            if(destination == world)
+            if(destination == this.worldArray[i])
             {
-                destination.active = true;
-                destination.changeWorld()
+                this.worldArray[i].active = true;
+                this.worldArray[i].changeWorld()
             } else {
-                destination.active = false;
-                destination.changeWorld();
+                this.worldArray[i].active = false;
+                this.worldArray[i].changeWorld();
             }
         }
     }

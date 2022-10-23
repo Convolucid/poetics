@@ -16,8 +16,19 @@ document.body.appendChild(bodyHTML);
 const canvas1 = document.getElementById('canvas1');
 const canvas2 = document.getElementById('canvas2');
 
-canvas1.classList.add('z-top-canvas');
-canvas2.classList.add('z-bottom-canvas');
+function styleCanvas(canvas) {
+    canvas.style.position = 'fixed'
+    canvas.style.top = 0;
+    canvas.style.left = 0;
+    canvas.style.outline = 'none';
+    canvas.style.minHeight = '100vh';
+}
+
+styleCanvas(canvas1);
+styleCanvas(canvas2);
+
+canvas1.style.zIndex = 0;
+canvas2.style.zIndex = -10;
 
 const experience = new Experience(canvas1, canvas2);
 

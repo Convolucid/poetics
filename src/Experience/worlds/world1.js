@@ -34,7 +34,7 @@ export default async function world1()
 
     world1.enableWorld = () => {
         world1.html.classList.remove('z-control-background')
-        world1.html.classList.add('z-control-foreground')
+        world1.html.classList.add('z-control-foreground')      
     }
 
     world1.disableWorld = () => {
