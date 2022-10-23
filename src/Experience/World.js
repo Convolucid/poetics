@@ -44,6 +44,7 @@ export default class World
                 "z-bottom-canvas"
             );
         }
+        this.resize();
     }
 
     scroll()

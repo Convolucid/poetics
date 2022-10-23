@@ -10,7 +10,6 @@ import poem2 from './world1/poem1.md'
 export default async function world1()
 {
     const frame = new Frame()
-
     const subject = new Subject()
     const environment = new Environment()
 
@@ -23,7 +22,7 @@ export default async function world1()
     ]
 
     world1.html = document.createElement('div')
-    world1.html.classList.add('container', 'hidden')
+    world1.html.classList.add('container')
     world1.html.innerHTML = worldHTML
 
     document.body.appendChild(world1.html)
