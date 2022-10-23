@@ -96,7 +96,6 @@ export default class Experience {
         this.canvas2.style.animationPlayState="running"
 
         // Switch between active worlds
-
         for(let i = 0; i < this.worldArray.length; i++)
         {
             const destination = this.worldArray[i]
@@ -104,22 +103,12 @@ export default class Experience {
             if(destination == world)
             {
                 destination.active = true;
-                destination.resize();
                 destination.changeWorld()
             } else {
                 destination.active = false;
                 destination.changeWorld();
             }
         }
-    }
-
-    changeText() {
-        this.textContent.classList.toggle(
-            "z-control-background"
-        )
-        this.textContent.classList.toggle(
-            "z-control-foreground"
-        )
     }
     
 
