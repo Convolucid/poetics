@@ -14,169 +14,27 @@
     min-height: 100vh;
 }
 
-section
-{
-    height: 100vh;
-    position: relative;
-    font-family: 'Garamond', serif;
-    /* padding: 5%; */
-}
 
-.title
-{
-    height: 125vh;
-}
-
-.double
-{
-    height: 200vh;
-}
-
-.triple
-{
-    height: 300vh;
-}
-
-section > div
-{
-    position: absolute;
-    right: 0;
-    width: 100%;
-    /* background-color: red; */
-}
-
-section.title > div
-{
-    bottom: 40vh;
-}
-
-h1
-{
-    position: relative;
-    right: 0;
-    /* margin-top: 5%;
-    margin-bottom: 5%; */
-    padding-top: 5%;
-    padding-bottom: 5%;
-    padding-right: 5%;
-    text-align: right;
-    color: #2e2711;
-    font-size: 2.5em;
-    background-image: 
-        linear-gradient(to top, rgba(255, 255, 255, 0),rgba(255, 255, 255, 0), rgb(255, 255, 255, 0.5),rgb(255, 255, 255, 0.5), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0))
-    ;
-    /* background-color: black; */
-}
-
-div.leftContent
-{
-    -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%);
-    mask-image: linear-gradient(to right, black 60%, transparent 100%);
-}
-
-div.articleContainer
-{
-    padding-top: 10%;
-    padding-bottom: 10%;
-    /* background-color: red; */
-}
-
-article
-{
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    padding: 20px 2%;
-    /* background-image: 
-        linear-gradient(to top, rgba(255, 255, 255, 0), rgb(255, 255, 255, 0.5),rgb(255, 255, 255, 0.5), rgba(255, 255, 255, 0))
-    ; */
-    background-color:rgba(255, 255, 255, 0.8)
-}
-
-h2
-{
-    position: relative;
-    padding: 2%;
-    color: #363632;
-    font-size: 1.5em;
-    background-image: 
-        linear-gradient(to top, rgba(255, 255, 255, 0), rgb(255, 255, 255, 0.6),rgba(255, 255, 255, 0.8),rgb(255, 255, 255, 0.6),rgba(255, 255, 255, 0))
-    ;
-    background-color:rgba(195, 195, 195, 0.7);
-    border-bottom:rgb(55, 55, 55, 0.2) 5px solid;
-    border-top:rgb(55, 55, 55, 0.2) 5px solid;
-
-}
-
-article > div
-{
-    padding-right: 2%;
-    padding-bottom: 2%;
-}
-
-.articleContainer p {
-    padding: 15px 30px;
-    min-width: 300px;
-    /* flex: 1 1 auto; */
-}
-
-
-
-canvas#title
-{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-}
-
-canvas#article1
-{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-}
-
-canvas#article2
-{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    /* background-color: red; */
-}
-
-.z-control-background {
-    opacity: 0;
-    transition: 3s;
-}
-
-.z-control-foreground {
-    opacity: 1;
-    transition: 3s;
-}
-
-.z-bottom-canvas 
-{
-    z-index: -10;
-}
 
 @keyframes z-anim-canvas {
     0% {
+        z-index: -10;
         max-width: 100%;
         max-height: 100%;
         min-height: 100vh;
         top: 0;
         left: 0;
         transform: rotate(0deg);
-        z-index: -10;
     }
     1% {
+        z-index: -10;
         max-width: 1%;
         max-height: 1%;
         min-height: 1vh;
         top: 50%;
         left: 50%;
         transform: rotate(180deg);
-        z-index: -10;
+
         
         box-shadow: 0px 0px 50px 30px white;
     }
@@ -193,28 +51,15 @@ canvas#article2
     }
 }
 
+.z-bottom-canvas 
+{
+    z-index: -10;
+}
+
 .z-top-canvas 
 {
+    z-index: 0;
     animation-name: z-anim-canvas;
     animation-duration: 3s;
     animation-play-state: paused;
-    z-index: 0;
-}
-
-
-/* Media Queries */
-@media (max-width: 768px) {
-    h1
-    {
-        font-size: 1.25em;
-        margin-top: 10%;
-        margin-bottom: 10%;
-    }
-
-    /* section.double, section.triple
-    {
-    background-image: 
-        linear-gradient(to right, rgb(255, 255, 255, 1), rgba(255, 255, 255, 0))
-    ;
-    } */
 }

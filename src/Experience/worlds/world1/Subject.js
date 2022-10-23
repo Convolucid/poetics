@@ -1,8 +1,8 @@
 import * as THREE from 'three'
 import gsap from 'gsap'
-import Experience from '../Experience.js'
-import Effects from '../effects/SubjectEffects.js'
-import lettersGLB from '../../../static/models/Letters/Letters.glb'
+import Experience from '../../Experience.js'
+import Effects from '../../effects/SubjectEffects.js'
+import lettersGLB from '../../../../static/models/Letters/Letters.glb'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 

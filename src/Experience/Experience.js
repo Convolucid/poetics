@@ -14,36 +14,41 @@ let instance = null;
 
 export default class Experience {
     constructor(canvas, canvas2) {
+        // This creates the singleton
         if (instance) {
             return instance;
         }
-
         instance = this;
 
-        // Global access
+        // Global access and universal utilities
         window.experience = this;
-
-        // Canvas
-        this.canvas = canvas;
-        this.canvas2 = canvas2;
-
-        this.textContent = document.getElementById('z-control')
-
-        // Setup
-        // New architecture will assign canvas to World classes, which will each have their own camera, renderer, and scenes.
-
         this.debug = new Debug();
         this.sizes = new Sizes();
         this.time = new Time();
 
-        this.cssEffects = new CSSEffects();
+        // Webgl Canvases (should create a function that iterates over .webgl class and constructs array, then attaches individual canvases to experience)
+        this.canvas = canvas;
+        this.canvas2 = canvas2;
+        this.canvasArray = [
+            this.canvas,
+            this.canvas2
+        ]
 
-        // Asynchronous function
+
+        
+        // Setup
+        // New architecture will assign canvas to World classes, which will each have their own camera, renderer, and scenes.
+
+        // Asynchronous function that creates new Worlds from the numbered world content functions
         this.loadWorlds();
 
+
+        // this.cssEffects = new CSSEffects();
+        this.textContent = document.getElementById('z-control')
+        this.titleWorld = document.getElementById('titleWorld')
         this.section = 1;
 
-        // Scrolling event
+        // Scroll, resize, and update functions.  Experience functions run the active World's functions.
         window.addEventListener("scroll", () => {
             this.scroll();
         });
@@ -62,6 +67,7 @@ export default class Experience {
         this.world1 = new World(this.canvas, worldOne);
         this.world1.active = true;
 
+        this.cssEffects = new CSSEffects();
         this.chapters = new Chapters();
 
         const worldTwo = await world2();
@@ -70,49 +76,52 @@ export default class Experience {
         this.world2.scene.background = worldTwo.background;
         this.world2.active = false;
 
+        this.worldArray = [
+            this.world1,
+            this.world2
+        ]
+
         document.body.addEventListener("click", () => {
-            this.changeWorld();
+            if(this.world1.active) {
+                this.changeWorld(this.world2);
+            } else {
+                this.changeWorld(this.world1);
+            }
         });
     }
 
-    changeWorld() {
+    changeWorld(world) {
+        // Enable canvas animations
         this.canvas.style.animationPlayState="running"
         this.canvas2.style.animationPlayState="running"
 
-        if (this.world1.active) {
-            this.world2.active = true;
-            this.world2.resize();
-            this.world2.canvas.classList.replace(
-                "z-bottom-canvas",
-                "z-top-canvas"
-            );
-            this.world1.canvas.classList.replace(
-                "z-top-canvas",
-                "z-bottom-canvas"
-            );
-            this.world1.active = false;
-            this.textContent.classList.replace(
-                "z-control-foreground",
-                "z-control-background"
-            )
-        } else {
-            this.world1.active = true;
-            this.world1.resize();
-            this.world1.canvas.classList.replace(
-                "z-bottom-canvas",
-                "z-top-canvas"
-            );
-            this.world2.canvas.classList.replace(
-                "z-top-canvas",
-                "z-bottom-canvas"
-            );
-            this.world2.active = false;
-            this.textContent.classList.replace(
-                "z-control-background",
-                "z-control-foreground"
-            )
+        // Switch between active worlds
+
+        for(let i = 0; i < this.worldArray.length; i++)
+        {
+            const destination = this.worldArray[i]
+
+            if(destination == world)
+            {
+                destination.active = true;
+                destination.resize();
+                destination.changeWorld()
+            } else {
+                destination.active = false;
+                destination.changeWorld();
+            }
         }
     }
+
+    changeText() {
+        this.textContent.classList.toggle(
+            "z-control-background"
+        )
+        this.textContent.classList.toggle(
+            "z-control-foreground"
+        )
+    }
+    
 
     resize() {
         this.sizes.resize();
@@ -151,7 +160,7 @@ export default class Experience {
 
     update() {
         this.time.update();
-        this.cssEffects.update();
+        this.cssEffects ? this.cssEffects.update() : false;
 
         this.world1 ? this.world1.update() : false;
         this.world2 ? this.world2.update() : false;

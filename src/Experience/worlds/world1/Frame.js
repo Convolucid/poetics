@@ -1,7 +1,7 @@
 import * as THREE from 'three'
-import Experience from '../Experience.js'
-import oceanVertexShader from '../shaders/ocean/vertex.glsl';
-import oceanFragmentShader from '../shaders/ocean/fragment.glsl';
+import Experience from '../../Experience.js'
+import oceanVertexShader from '../../shaders/ocean/vertex.glsl';
+import oceanFragmentShader from '../../shaders/ocean/fragment.glsl';
 
 export default class Frame2
 {

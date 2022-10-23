@@ -272,6 +272,14 @@ export default async function world2()
 
     world2.fog = new THREE.FogExp2(0x6699FF, 0.015)
     world2.background = new THREE.Color(0x3366bb);
+
+	world2.enableWorld = () => {
+        console.log('world 2 enabled')
+    }
+
+    world2.disableWorld = () => {
+        console.log('world 2 disabled')
+    }
     
 
     return world2;

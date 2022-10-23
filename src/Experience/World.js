@@ -29,6 +29,23 @@ export default class World
         this.active = false;
     }
 
+    changeWorld(){
+        if(this.active == true)
+        {
+            this.contents.enableWorld ? this.contents.enableWorld() : false
+            this.canvas.classList.replace(
+                "z-bottom-canvas",
+                "z-top-canvas"
+            );
+        } else {
+            this.contents.disableWorld ? this.contents.disableWorld() : false
+            this.canvas.classList.replace(
+                "z-top-canvas",
+                "z-bottom-canvas"
+            );
+        }
+    }
+
     scroll()
     {
         if(this.active == true)
