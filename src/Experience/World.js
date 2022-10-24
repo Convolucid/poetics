@@ -47,35 +47,41 @@ export default class World
             const pixelsY = viewportHeight - ((mousePosY + 1) * viewportHeight / 2)
 
             // Random variables to implement into transform
-            const r1 = (Math.random() * 180) - 90;
-            const r2 = (Math.random() * 180) - 90;
+            const r1 = (Math.random() * 90) - 45;
+            const r2 = (Math.random() * 90) - 45;
             const r3 = Math.random() * 180;
 
             this.canvas.style.top = pixelsY + 'px';
             this.canvas.style.left = pixelsX + 'px';
             this.canvas.style.maxWidth = '1%';
             this.canvas.style.maxHeight = '1%';
-            this.canvas.style.minHeight = '3vh';
+            this.canvas.style.minHeight = '1vh';
             this.canvas.style.zIndex = 0;
             this.canvas.style.transform = 'skew(' + r1 + 'deg, ' + r2 + 'deg)'
-            this.canvas.style.filter = 'hue-rotate(' + r3 + 'deg) invert(1)'
-            this.canvas.style.boxShadow = '0px 0px 50px 5px black'
+            this.canvas.style.filter = 'hue-rotate(' + r3 + 'deg)'
+            this.canvas.style.boxShadow = '0px 0px 0px 0px white'
 
             // Lerp top and bottom percentages with gsap to expand from a certain point on screen.
             gsap.to(
                 this.canvas.style,
                 {
+                    duration: 1,
+                    ease: 'expo.out',
+                    boxShadow: '0px 0px 200px 200px white'
+                }
+            )
+            gsap.to(
+                this.canvas.style,
+                {
                     duration: 3,
-                    ease: 'expo.inOut',
-                    overwrite: true,
+                    ease: 'expo.in',
                     top: '0px',
                     left: '0px',
                     maxWidth: '100%',
                     maxHeight: '100%',
                     minHeight: '100vh',
                     transform: 'skew(0deg, 0deg)',
-                    filter: 'hue-rotate(0deg) invert(0)',
-                    boxShadow: '0px 0px 0px 0px white'
+                    filter: 'hue-rotate(0deg)'
                 }
             )
         } else {

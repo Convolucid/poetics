@@ -128,7 +128,7 @@ canvas#article2
 .z-control-foreground {
     z-index: 10;
     opacity: 1;
-    transition: 3s;
+    transition: 2s 2.5s;
 }
 
 /* Media Queries */

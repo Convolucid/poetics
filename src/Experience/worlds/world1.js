@@ -5,7 +5,7 @@ import Subject from './world1/Subject.js'
 import './world1/world1.css'
 import worldHTML from './world1/world1.html'
 import poem1 from './world1/poem1.md'
-import poem2 from './world1/poem1.md'
+import poem2 from './world1/poem2.md'
 
 export default async function world1()
 {
