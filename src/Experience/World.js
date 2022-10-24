@@ -6,8 +6,6 @@ import Camera from "./Camera.js"
 import Raycaster from "./Raycaster.js"
 import Renderer from './Renderer.js'
 
-import Chapters from './Chapters.js'
-
 export default class World
 {
     constructor(canvas, contents)
@@ -27,6 +25,14 @@ export default class World
         for(let i = 0; i < contents.length; i++)
         {
             this.scene.add(contents[i])
+        }
+
+        if(contents.raycastObjects)
+        {
+            for(let i = 0; i < contents.raycastObjects.length; i++)
+            {
+                this.raycaster.raycastObjects.push(contents.raycastObjects[i])
+            }
         }
 
         this.contents = contents
@@ -124,6 +130,7 @@ export default class World
         {
             this.camera.update()
             this.renderer.update()
+            this.raycaster.update()
             for(let i = 0; i < this.contents.length; i++)
             {
                 this.contents[i].update ? this.contents[i].update() : false

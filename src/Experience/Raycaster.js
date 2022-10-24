@@ -1,21 +1,13 @@
 import * as THREE from 'three'
-import Experience from './Experience'
 
 export default class Raycaster
 {
     constructor(world)
     {
-        this.experience = new Experience()
+        this.canvas = world.canvas
+        this.controls = world.controls.instance
+        this.camera = world.camera.instance
 
-        if(world) {
-            this.canvas = world.canvas
-            this.controls = world.controls
-            this.camera = world.camera.instance
-        } else {
-            this.canvas = this.experience.canvas
-            this.controls = this.experience.controls
-            this.camera = this.experience.camera.instance
-        }
 
         this.setInstance()
     }
@@ -24,6 +16,9 @@ export default class Raycaster
     {
         this.instance = new THREE.Raycaster()
         this.instance.setFromCamera(this.controls, this.camera)
+
+
+
         this.raycastObjects = []
 
         this.currentIntersect = null
@@ -32,7 +27,7 @@ export default class Raycaster
         {
             if(this.currentIntersect)
             {
-                console.log(this.currentIntersect.object)
+                console.log(this.currentIntersect)
                 this.currentIntersect.object.onClick()
             }
         })

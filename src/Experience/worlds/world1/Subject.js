@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import gsap from 'gsap'
 import Experience from '../../Experience.js'
-import Effects from '../../effects/SubjectEffects.js'
+// import Effects from '../../effects/SubjectEffects.js'
 import lettersGLB from '../../../../static/models/Letters/Letters.glb'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
@@ -29,7 +29,7 @@ export default class Subject
         // Setup
         this.loader = new GLTFLoader()
 
-        this.effects = new Effects()
+        // this.effects = new Effects()
 
 
 
@@ -157,7 +157,7 @@ export default class Subject
                     {
                         this.meshArray[i].tweenStartTime = this.experience.time.current
 
-                        this.effects.trailingMesh(this.meshArray[i])
+                        // this.effects.trailingMesh(this.meshArray[i])
                     }            
                 }
 
@@ -177,7 +177,7 @@ export default class Subject
                     ;
                 }
 
-                this.effects.update(this.meshArray[i]);
+                // this.effects.update(this.meshArray[i]);
             }
         }
     }

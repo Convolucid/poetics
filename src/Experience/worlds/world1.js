@@ -21,6 +21,13 @@ export default async function world1()
         environment.sunLight
     ]
 
+    world1.raycastObjects = []
+
+    for(let i = 0; i < subject.meshArray.length; i++)
+    {
+        world1.raycastObjects.push(subject.meshArray[i])
+    }
+
     world1.html = document.createElement('div')
     world1.html.classList.add('container')
     world1.html.innerHTML = worldHTML
@@ -47,6 +54,8 @@ export default async function world1()
     world1.scroll = () => {
 
     }
+
+
 
     return world1;
 }
