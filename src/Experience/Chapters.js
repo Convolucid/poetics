@@ -20,7 +20,6 @@ export default class Chapters
         // CSS
         this.cssEffects.title.color = 'rgb(255, 240, 190,'
 
-
         // Camera
         gsap.to(
             this.camera.instance.rotation,

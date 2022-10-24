@@ -274,11 +274,11 @@ export default async function world2()
     world2.background = new THREE.Color(0x3366bb);
 
 	world2.enableWorld = () => {
-
+        document.body.style.overflow = 'hidden' 
     }
 
     world2.disableWorld = () => {
-
+        document.body.style.overflow = '' 
     }
     
 

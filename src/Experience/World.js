@@ -6,6 +6,8 @@ import Camera from "./Camera.js"
 import Raycaster from "./Raycaster.js"
 import Renderer from './Renderer.js'
 
+import Chapters from './Chapters.js'
+
 export default class World
 {
     constructor(canvas, contents)
@@ -16,7 +18,7 @@ export default class World
         this.controls = new Controls(this);
         this.raycaster = new Raycaster(this);
         this.renderer = new Renderer(this);
-
+        
         this.renderer.debugObject.clearColor = new THREE.Color(0, 0, 0)
 
 
