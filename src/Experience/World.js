@@ -39,7 +39,11 @@ export default class World
         this.active = false;
     }
 
-    changeWorld(){
+    activateWorld(activated){
+        this.active = activated;
+
+        // this.raycaster.currentIntersect = null
+
         if(this.active == true)
         {
             this.contents.enableWorld ? this.contents.enableWorld() : false
@@ -93,6 +97,7 @@ export default class World
                 }
             )
         } else {
+
             this.contents.disableWorld ? this.contents.disableWorld() : false;
             this.canvas.style.zIndex = -10;
         }
@@ -135,6 +140,8 @@ export default class World
             {
                 this.contents[i].update ? this.contents[i].update() : false
             }
+        } else {
+            this.raycaster.currentIntersect = null;
         }
     }
 }

@@ -25,6 +25,16 @@ export default async function world1()
 
     for(let i = 0; i < subject.meshArray.length; i++)
     {
+        subject.meshArray[i].clickHandler = () => {
+            console.log(subject.meshArray[i])
+        }
+        subject.meshArray[i].intersectHandler = () => {
+            // Set up unique rotation function that calculates mouse trajectory and spins accordingly
+            subject.meshArray[i].rotation.x += 0.003
+            subject.meshArray[i].rotation.y += 0.003
+            subject.meshArray[i].rotation.z += 0.003
+            console.log('rotation!')
+        }
         world1.raycastObjects.push(subject.meshArray[i])
     }
 

@@ -2,8 +2,8 @@ import * as THREE from "three";
 import Sizes from "./utils/Sizes.js";
 import Time from "./utils/Time.js";
 import CSSEffects from "./effects/CSSEffects.js";
-import World from "./World.js";
 
+import World from "./World.js";
 import world1 from "./worlds/world1.js";
 import world2 from "./worlds/world2.js";
 import Chapters from "./Chapters.js";
@@ -90,21 +90,15 @@ export default class Experience {
         });
     }
 
+    // Switch between active worlds
     changeWorld(destination) {
-        // Enable canvas animations
-        // this.canvas.style.animationPlayState="running"
-        // this.canvas2.style.animationPlayState="running"
-
-        // Switch between active worlds
         for(let i = 0; i < this.worldArray.length; i++)
         {
             if(destination == this.worldArray[i])
             {
-                this.worldArray[i].active = true;
-                this.worldArray[i].changeWorld()
+                this.worldArray[i].activateWorld(true)
             } else {
-                this.worldArray[i].active = false;
-                this.worldArray[i].changeWorld();
+                this.worldArray[i].activateWorld(false);
             }
         }
     }
