@@ -1,3 +1,5 @@
+import gsap from 'gsap'
+
 import Environment from './world1/Environment.js';
 import Frame from './world1/Frame.js';
 import Subject from './world1/Subject.js'
@@ -28,15 +30,50 @@ export default async function world1()
         subject.meshArray[i].clickHandler = () => {
             console.log(subject.meshArray[i])
         }
-        subject.meshArray[i].intersectHandler = () => {
+        subject.meshArray[i].intersectHandler = async (raycaster) => {
             // Set up unique rotation function that calculates mouse trajectory and spins accordingly
-            subject.meshArray[i].rotation.x += 0.003
-            subject.meshArray[i].rotation.y += 0.003
-            subject.meshArray[i].rotation.z += 0.003
-            console.log('rotation!')
+            const trajectory = await getMouseTrajectory(raycaster.controls)
+
+            letterMovement(trajectory, subject.meshArray[i])
+            
         }
         world1.raycastObjects.push(subject.meshArray[i])
     }
+
+    async function getMouseTrajectory(vector2) {
+        // Get initial position and remove negative values
+        const trajectory = {
+            x: vector2.x,
+            y: vector2.y,
+            z: 0
+        }
+
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                trajectory.x -= vector2.x;
+                trajectory.y -= vector2.y;
+                trajectory.z = (trajectory.x, trajectory.y) / 2
+                resolve(trajectory)
+            }, 50)
+        })
+    }
+
+    function letterMovement(trajectory, letter)
+    {
+        gsap.to(
+            letter.rotation,
+            {
+                duration: 0.5,
+                ease: 'expo.out',
+                overwrite: true,
+                x: '+=' + trajectory.y * 20,
+                y: '-=' + trajectory.x * 5,
+                z: '+=' + trajectory.z * 20,
+            }
+        )
+    }
+
+
 
     world1.html = document.createElement('div')
     world1.html.classList.add('container')

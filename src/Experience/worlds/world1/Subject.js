@@ -166,15 +166,15 @@ export default class Subject
                     let randomMovement = this.meshArray[i].randomMovementModifier
                     let randomSpeed = this.meshArray[i].randomSpeedModifier
 
-                    this.meshArray[i].position.x += 
-                        Math.sin(experience.time.elapsed * 0.001 * randomSpeed * this.model.speedModifier) * randomMovement * this.model.movementModifierX * 0.0001
-                    ;
-                    this.meshArray[i].position.y += 
-                        Math.cos(experience.time.elapsed * 0.0005 * randomSpeed * this.model.speedModifier) * randomMovement * this.model.movementModifierY * 0.0001
-                    ;
-                    this.meshArray[i].position.z += 
-                        Math.sin(experience.time.elapsed * 0.002 * randomSpeed * this.model.speedModifier) * randomMovement * this.model.movementModifierZ * 0.0001
-                    ;
+                    // this.meshArray[i].position.x += 
+                    //     Math.sin(experience.time.elapsed * 0.001 * randomSpeed * this.model.speedModifier) * randomMovement * this.model.movementModifierX * 0.0001
+                    // ;
+                    // this.meshArray[i].position.y += 
+                    //     Math.cos(experience.time.elapsed * 0.0005 * randomSpeed * this.model.speedModifier) * randomMovement * this.model.movementModifierY * 0.0001
+                    // ;
+                    // this.meshArray[i].position.z += 
+                    //     Math.sin(experience.time.elapsed * 0.002 * randomSpeed * this.model.speedModifier) * randomMovement * this.model.movementModifierZ * 0.0001
+                    // ;
                 }
 
                 // this.effects.update(this.meshArray[i]);

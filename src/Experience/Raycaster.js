@@ -29,7 +29,6 @@ export default class Raycaster
             // this.checkCurrentIntersect()
             if(this.currentIntersect)
             {
-                console.log(this.world)
                 this.currentIntersect.object.clickHandler()
             }
         })
@@ -66,7 +65,7 @@ export default class Raycaster
 
         for(const intersect of this.intersects)
         {
-            intersect.object.intersectHandler()
+            intersect.object.intersectHandler(this)
         }
 
         // if(this.intersects.length) {
