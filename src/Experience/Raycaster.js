@@ -29,7 +29,7 @@ export default class Raycaster
             // this.checkCurrentIntersect()
             if(this.currentIntersect)
             {
-                this.currentIntersect.object.clickHandler()
+                this.currentIntersect.object.clickHandler ? this.currentIntersect.object.clickHandler() : false
             }
         })
     }
@@ -65,7 +65,7 @@ export default class Raycaster
 
         for(const intersect of this.intersects)
         {
-            intersect.object.intersectHandler(this)
+            intersect.object.intersectHandler ? intersect.object.intersectHandler(this) : false
         }
 
         // if(this.intersects.length) {

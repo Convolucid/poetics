@@ -25,10 +25,37 @@ export default async function world1()
 
     world1.raycastObjects = []
 
+    // Click function on background mesh resets original orientation of letters
+    frame.mesh.clickHandler = () => {
+        for(let i = 0; i < subject.meshArray.length; i++){
+            // Complex OR conditional is because the specific imported model has odd rotation values in some of the meshes
+            if(i == 0 || i == 5 || i == 7 || i == 9 || i ==11)
+            {
+                gsap.to(subject.meshArray[i].rotation,
+                    {
+                        duration: 1,
+                        x: 0,
+                        y: -1.59,
+                        z: 0
+                    })
+            } else {
+                gsap.to(subject.meshArray[i].rotation,
+                    {
+                        duration: 1,
+                        x: 0,
+                        y: 0,
+                        z: 0
+                    })
+            }
+        }
+    }
+    world1.raycastObjects.push(frame.mesh)
+
+    // For loop adds intersect functions that moves letters based on mouse direction and speed
     for(let i = 0; i < subject.meshArray.length; i++)
     {
         subject.meshArray[i].clickHandler = () => {
-            console.log(subject.meshArray[i])
+            console.log(subject.meshArray[i].rotation)
         }
         subject.meshArray[i].intersectHandler = async (raycaster) => {
             // Set up unique rotation function that calculates mouse trajectory and spins accordingly
@@ -73,8 +100,6 @@ export default async function world1()
         )
     }
 
-
-
     world1.html = document.createElement('div')
     world1.html.classList.add('container')
     world1.html.innerHTML = worldHTML
@@ -101,8 +126,6 @@ export default async function world1()
     world1.scroll = () => {
 
     }
-
-
 
     return world1;
 }
