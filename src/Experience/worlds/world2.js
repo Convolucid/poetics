@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import Experience from '../Experience.js';
+import Door from '../utils/Door.js'
 
 export default async function world2()
 {
@@ -12,90 +13,6 @@ export default async function world2()
 
 	const light2 = new THREE.PointLight(0x000FFF, 3);
 	light2.position.set(-10,-10,10)
-
-    // Doors
-    function randInt(min, max) {
-        if (max === undefined) {
-            max = min;
-            min = 0;
-        }
-        return Math.random() * (max - min) + min | 0;
-    }
-
-    function makeDoorCanvas() 
-    {
-        const ctx = document.createElement('canvas').getContext('2d');
-		ctx.canvas.width = 256;
-		ctx.canvas.height = 256;
-	   
-		ctx.globalAlpha = 1
-		ctx.fillStyle = '#D7E4FF';
-		ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-		
-
-		drawDoorPattern(ctx);
-
-		return ctx.canvas;
-	}
-
-    function drawDoorPattern(ctx) {
-		
-		// hsl sets the random color to blue
-		ctx.globalAlpha = 0.3
-		let h = 240
-		let s = Math.floor(Math.random() * 100);
-		let l = Math.floor(Math.random() * 100);
-		let gradient1 = ctx.createLinearGradient(0, 0, 100, 0)
-			gradient1.addColorStop(0, 'hsl(' + h + ', ' + s/4 + '%, ' + l/4 + '%)')
-			gradient1.addColorStop(1, 'hsl(' + h + ', ' + s + '%, ' + l + '%)')
-
-		ctx.fillStyle = gradient1;
-		// ctx.fillStyle = `#${randInt(0x1000000).toString(16).padStart(6, '0')}`;
-		ctx.beginPath();
-	
-		const x = randInt(256);
-		const y = randInt(256);
-		const radius = randInt(10, 36);
-		ctx.arc(x, y, radius, 0, Math.PI * 2);
-		ctx.fillRect(x, y, radius, radius);
-		ctx.fill();	
-	};
-
-    const doorGeometry = new THREE.PlaneGeometry(1, 2)
-    const paintCanvas = makeDoorCanvas();
-    const texture = new THREE.CanvasTexture(paintCanvas);
-
-    function makeDoor() 
-    {
-        texture.minFilter = THREE.LinearFilter;
-		texture.wrapS = THREE.ClampToEdgeWrapping;
-		texture.wrapT = THREE.ClampToEdgeWrapping;
-
-        const doorMaterial = new THREE.MeshPhongMaterial({
-			map: texture,
-		});
-
-		
-		const door = new THREE.Mesh(doorGeometry, doorMaterial);
-	
-	
-		// if units are meters then 0.01 here makes size
-		// of the label into centimeters.
-		const doorBaseScale = 0.05;
-		door.scale.x = paintCanvas.width  * doorBaseScale;
-		door.scale.y = paintCanvas.height * doorBaseScale;
-
-        return door;
-    }
-
-    const door = makeDoor()
-    door.update = () => {
-        drawDoorPattern(paintCanvas.getContext('2d'))
-        texture.needsUpdate = true
-    }
-    door.position.z = -5;
-
-
 
 	// Words
 	function makeLabelCanvas(size, text, color) {
@@ -256,12 +173,18 @@ export default async function world2()
             Math.sin(t * r * 0.00005) * r2 * 50,
         )
     }
+
+	const door = new Door(0.03)
+	door.instance.position.z = -5;
    
     const world2 = [
         light1,
         light2,
-        door
+        door.instance
     ]
+
+	world2.raycastObjects = []
+	world2.raycastObjects.push(door.instance)
 
     addContentsToArray(labels, world2)
     addContentsToArray(labels2, world2)

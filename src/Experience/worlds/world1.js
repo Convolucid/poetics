@@ -3,6 +3,7 @@ import gsap from 'gsap'
 import Environment from './world1/Environment.js';
 import Frame from './world1/Frame.js';
 import Subject from './world1/Subject.js'
+import Door from '../utils/Door.js'
 
 import './world1/world1.css'
 import worldHTML from './world1/world1.html'
@@ -14,16 +15,24 @@ export default async function world1()
     const frame = new Frame()
     const subject = new Subject()
     const environment = new Environment()
+    const door = new Door(0.008)
 
     await subject.load()
 
     const world1 = [
         frame.mesh,
         subject.model,
-        environment.sunLight
+        environment.sunLight,
+        door.instance
     ]
 
+    door.instance.position.y = -70;
+    door.instance.position.z = -20;
+    door.instance.rotation.z = 1.5;
+
     world1.raycastObjects = []
+
+    world1.raycastObjects.push(door.instance)
 
     // Click function on background mesh resets original orientation of letters
     frame.mesh.clickHandler = () => {
