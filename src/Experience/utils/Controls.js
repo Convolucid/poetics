@@ -28,6 +28,12 @@ export default class Controls
             this.instance.y = - (event.clientY / this.sizes.height * 2 -1)
         })
 
+        window.addEventListener('touchmove', (event) =>
+        {
+            this.instance.x = event.touches[0].clientX / this.sizes.width * 2 -1;
+            this.instance.y = - (event.touches[0].clientY / this.sizes.height * 2 -1)
+        })
+
         this.orbit = new OrbitControls(this.camera, this.canvas)
     }
 }

@@ -130,7 +130,6 @@ export default async function world1()
     article2.innerHTML = poem2
 
 
-
     world1.enableWorld = () => {
         world1.html.classList.remove('z-control-background', 'disable-pointer-events')
         world1.html.classList.add('z-control-foreground')     
