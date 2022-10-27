@@ -4,6 +4,7 @@ import Environment from './world1/Environment.js';
 import Frame from './world1/Frame.js';
 import Subject from './world1/Subject.js'
 import Door from '../utils/Door.js'
+import Label from '../utils/Label.js'
 
 import './world1/world1.css'
 import worldHTML from './world1/world1.html'
@@ -16,6 +17,8 @@ export default async function world1()
     const subject = new Subject()
     const environment = new Environment()
     const door = new Door(0.008)
+    const label1 = new Label(72, 'oh, a door', 'white');
+
 
     await subject.load()
 
@@ -23,12 +26,18 @@ export default async function world1()
         frame.mesh,
         subject.model,
         environment.sunLight,
-        door.instance
+        door.instance,
+        label1.instance
     ]
 
     door.instance.position.y = -70;
     door.instance.position.z = -20;
     door.instance.rotation.z = 1.5;
+
+    label1.instance.position.x = 3;
+    label1.instance.position.y = -70;
+    label1.instance.position.z = -16;
+
 
     world1.raycastObjects = []
 
