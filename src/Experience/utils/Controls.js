@@ -28,6 +28,6 @@ export default class Controls
             this.instance.y = - (event.clientY / this.sizes.height * 2 -1)
         })
 
-        // this.orbit = new OrbitControls(this.camera, this.canvas)
+        this.orbit = new OrbitControls(this.camera, this.canvas)
     }
 }

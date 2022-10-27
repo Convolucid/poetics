@@ -1,4 +1,4 @@
-.world1-z-control
+.disable-pointer-events
 {
     pointer-events: none;
 }
@@ -8,7 +8,6 @@ section
     height: 100vh;
     position: relative;
     font-family: 'Garamond', serif;
-    /* padding: 5%; */
 }
 
 .title

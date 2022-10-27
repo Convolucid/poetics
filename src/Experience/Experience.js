@@ -87,13 +87,6 @@ export default class Experience {
         this.world2.contents.raycastObjects[0].clickHandler = () => {
             this.changeWorld(this.world1)
         }
-        // document.body.addEventListener("click", () => {
-        //     if(this.world1.active == true) {
-        //         this.changeWorld(this.world2);
-        //     } else {
-        //         this.changeWorld(this.world1);
-        //     }
-        // });
     }
 
     // Switch between active worlds

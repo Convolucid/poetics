@@ -42,8 +42,6 @@ export default class World
     activateWorld(activated){
         this.active = activated;
 
-        // this.raycaster.currentIntersect = null
-
         if(this.active == true)
         {
             this.contents.enableWorld ? this.contents.enableWorld() : false
