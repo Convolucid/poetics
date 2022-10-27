@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import Experience from '../Experience.js';
 import Door from '../utils/Door.js'
+import Label from '../utils/Label.js'
 
 export default async function world2()
 {
@@ -15,129 +16,72 @@ export default async function world2()
 	light2.position.set(-10,-10,10)
 
 	// Words
-	function makeLabelCanvas(size, text, color) {
-		const borderSize = 2;
-		const ctx = document.createElement('canvas').getContext('2d');
-		const font =  `${size}px bold sans-serif`;
-		ctx.font = font;
-		// measure how long the name will be
-		const doubleBorderSize = borderSize * 2;
-		const width = ctx.measureText(text).width + doubleBorderSize;
-		const height = size + doubleBorderSize;
-		ctx.canvas.width = width;
-		ctx.canvas.height = height;
-	   
-		// need to set font again after resizing canvas
-		ctx.font = font;
-		ctx.textBaseline = 'top';
-		ctx.globalAlpha = 0
-		ctx.fillStyle = 'white';
-		ctx.fillRect(0, 0, width, height);
-		ctx.globalAlpha = 1
-		ctx.fillStyle = color;
-		ctx.fillText(text, borderSize, borderSize);
-	   
-		return ctx.canvas;
-	}
-
-    function makeLabel(size, text, color) {
-	
-		const canvas = makeLabelCanvas(size, text, color);
-		const texture = new THREE.CanvasTexture(canvas);
-	
-		texture.minFilter = THREE.LinearFilter;
-		texture.wrapS = THREE.ClampToEdgeWrapping;
-		texture.wrapT = THREE.ClampToEdgeWrapping;
-	
-		// const labelMaterial = new THREE.MeshBasicMaterial({
-		//     map: texture,
-		//     side: THREE.DoubleSide,
-		//     transparent: true,
-		// });
-	
-		const labelMaterial = new THREE.SpriteMaterial({
-			map: texture,
-			transparent: true,
-		});
-	
-		
-		// label = new THREE.Mesh(labelGeometry, labelMaterial);
-		const label = new THREE.Sprite(labelMaterial);
-	
-		// if units are meters then 0.01 here makes size
-		// of the label into centimeters.
-		const labelBaseScale = 0.01;
-		label.scale.x = canvas.width  * labelBaseScale;
-		label.scale.y = canvas.height * labelBaseScale;
-	
-		return(label)
-	}
     
-    const label1 = makeLabel(48, 'the Word Was God', 'white');
-	const label2 = makeLabel(32, 'the Words Were Big God, a true tragedy of compliance', 'white');
-	const label3 = makeLabel(36, 'the word was a small god, a splintering seed, a moment hatched among Possibility', 'white');
-	const label4 = makeLabel(54, 'the Word was a fever-breaking sweat on the brow of the universe', 'white');
-	const label5 = makeLabel(82, 'the Word is a weapon', 'white');
-	const label6 = makeLabel(16, 'the Word must be crusted in salt', 'white');
-	const label7 = makeLabel(48, 'the Word was not', 'white');
-	const label8 = makeLabel(24, 'mister thought and missus image love each other very much and the Word is in a stork sack', 'white');
-	const label9 = makeLabel(50, 'the word is a ghost in the fog', 'white');
-	const label10 = makeLabel(36, 'the Word had her way with you', 'white');
+    const label1 = new Label(48, 'the Word Was God', 'white');
+	const label2 = new Label(32, 'the Words Were Big God, a true tragedy of compliance', 'white');
+	const label3 = new Label(36, 'the word was a small god, a splintering seed, a moment hatched among Possibility', 'white');
+	const label4 = new Label(54, 'the Word was a fever-breaking sweat on the brow of the universe', 'white');
+	const label5 = new Label(82, 'the Word is a weapon', 'white');
+	const label6 = new Label(16, 'the Word must be crusted in salt', 'white');
+	const label7 = new Label(48, 'the Word was not', 'white');
+	const label8 = new Label(24, 'mister thought and missus image love each other very much and the Word is in a stork sack', 'white');
+	const label9 = new Label(50, 'the word is a ghost in the fog', 'white');
+	const label10 = new Label(36, 'the Word had her way with you', 'white');
 
-	const label11 = makeLabel(48, 'the Word defies / deifies', 'white');
-	const label12 = makeLabel(32, 'the Word cannot be a question', 'white');
-	const label13 = makeLabel(36, 'the Word was the bolt itself.  Babel burst at the seams.', 'white');
-	const label14 = makeLabel(54, 'the Word, all dressed in ink and paint and neon', 'white');
-	const label15 = makeLabel(82, 'the Word is a wet mirror', 'white');
-	const label16 = makeLabel(16, 'the Word is gray matter grunting', 'white');
-	const label17 = makeLabel(48, 'the Word must be', 'white');
-	const label18 = makeLabel(24, 'the word ate wolf meat and howled', 'white');
-	const label19 = makeLabel(50, 'the words are wheels in the wind', 'white');
-	const label20 = makeLabel(36, 'the Word has a key for you', 'white');
+	const label11 = new Label(48, 'the Word defies / deifies', 'white');
+	const label12 = new Label(32, 'the Word cannot be a question', 'white');
+	const label13 = new Label(36, 'the Word was the bolt itself.  Babel burst at the seams.', 'white');
+	const label14 = new Label(54, 'the Word, all dressed in ink and paint and neon', 'white');
+	const label15 = new Label(82, 'the Word is a wet mirror', 'white');
+	const label16 = new Label(16, 'the Word is gray matter grunting', 'white');
+	const label17 = new Label(48, 'the Word must be', 'white');
+	const label18 = new Label(24, 'the word ate wolf meat and howled', 'white');
+	const label19 = new Label(50, 'the words are wheels in the wind', 'white');
+	const label20 = new Label(36, 'the Word has a key for you', 'white');
 
-	const label21 = makeLabel(48, 'the Word blinds the unworthy', 'white');
-	const label22 = makeLabel(32, 'the Word has never been immutable and always will be', 'white');
-	const label23 = makeLabel(36, 'her first word was secret.', 'white');
-	const label24 = makeLabel(54, 'the Word washed ashore, a bobbing bottle in the sky foam.  We read it through the stained glass.', 'white');
-	const label25 = makeLabel(82, 'the Word cannot be satisfied', 'white');
-	const label26 = makeLabel(16, 'there are no words for what came before silence', 'white');
-	const label27 = makeLabel(48, 'the whole Word must never come true', 'white');
-	const label28 = makeLabel(24, 'the word was already ancient when voices learned to wield it', 'white');
-	const label29 = makeLabel(50, 'these words are all for you', 'white');
-	const label30 = makeLabel(36, 'and the Word was good.', 'white');
+	const label21 = new Label(48, 'the Word blinds the unworthy', 'white');
+	const label22 = new Label(32, 'the Word has never been immutable and always will be', 'white');
+	const label23 = new Label(36, 'her first word was secret.', 'white');
+	const label24 = new Label(54, 'the Word washed ashore, a bobbing bottle in the sky foam.  We read it through the stained glass.', 'white');
+	const label25 = new Label(82, 'the Word cannot be satisfied', 'white');
+	const label26 = new Label(16, 'there are no words for what came before silence', 'white');
+	const label27 = new Label(48, 'the whole Word must never come true', 'white');
+	const label28 = new Label(24, 'the word was already ancient when voices learned to wield it', 'white');
+	const label29 = new Label(50, 'these words are all for you', 'white');
+	const label30 = new Label(36, 'and the Word was good.', 'white');
 
-	const label31 = makeLabel(64, 'the Word is a fit of making', 'white');
-	const label32 = makeLabel(72, 'the word is a fit of order', 'white');
-	const label33 = makeLabel(72, 'the word is another word', 'white');
-	const label34 = makeLabel(72, 'the word poked a hole in a glitter balloon', 'white');
-	const label35 = makeLabel(32, 'the Word swells', 'white');
-	const label36 = makeLabel(18, 'the Word shrinks, petals closing', 'white');
-	const label37 = makeLabel(24, 'women study the Word and men long to speak it', 'white');
-	const label38 = makeLabel(36, 'the Word waited with a small blade in the shadows', 'white');
-	const label39 = makeLabel(72, 'nothing I have ever done compares to the wyrd', 'white');
-	const label40 = makeLabel(24, 'the soldier says his first words', 'white');
+	const label31 = new Label(64, 'the Word is a fit of making', 'white');
+	const label32 = new Label(72, 'the word is a fit of order', 'white');
+	const label33 = new Label(72, 'the word is another word', 'white');
+	const label34 = new Label(72, 'the word poked a hole in a glitter balloon', 'white');
+	const label35 = new Label(32, 'the Word swells', 'white');
+	const label36 = new Label(18, 'the Word shrinks, petals closing', 'white');
+	const label37 = new Label(24, 'women study the Word and men long to speak it', 'white');
+	const label38 = new Label(36, 'the Word waited with a small blade in the shadows', 'white');
+	const label39 = new Label(72, 'nothing I have ever done compares to the wyrd', 'white');
+	const label40 = new Label(24, 'the soldier says his first words', 'white');
 
-	const label41 = makeLabel(64, 'the Word wants to go home', 'white');
-	const label42 = makeLabel(24, 'the wyrd is a central scar', 'white');
-	const label43 = makeLabel(72, 'the word births the worldEater', 'white');
-	const label44 = makeLabel(72, 'the word guides itself into the crevice', 'white');
-	const label45 = makeLabel(32, 'the Word gilds the altar', 'white');
-	const label46 = makeLabel(18, 'the Word flexes in harmony', 'white');
-	const label47 = makeLabel(24, 'five hours ago the Word wished you well', 'white');
-	const label48 = makeLabel(36, 'we bear words', 'white');
-	const label49 = makeLabel(72, 'the true Word is one, the binding, the strong nuclear force', 'white');
-	const label50 = makeLabel(24, 'there are no such things as words', 'white');
+	const label41 = new Label(64, 'the Word wants to go home', 'white');
+	const label42 = new Label(24, 'the wyrd is a central scar', 'white');
+	const label43 = new Label(72, 'the word births the worldEater', 'white');
+	const label44 = new Label(72, 'the word guides itself into the crevice', 'white');
+	const label45 = new Label(32, 'the Word gilds the altar', 'white');
+	const label46 = new Label(18, 'the Word flexes in harmony', 'white');
+	const label47 = new Label(24, 'five hours ago the Word wished you well', 'white');
+	const label48 = new Label(36, 'we bear words', 'white');
+	const label49 = new Label(72, 'the true Word is one, the binding, the strong nuclear force', 'white');
+	const label50 = new Label(24, 'there are no such things as words', 'white');
 
-	const label51 = makeLabel(64, 'the Word is wasted on them', 'white');
-	const label52 = makeLabel(72, 'the wurd wants to be underestimated', 'white');
-	const label53 = makeLabel(72, 'the word is a pattern in a spiderweb', 'white');
-	const label54 = makeLabel(72, 'the word is written in the blood of cartographers', 'white');
-	const label55 = makeLabel(32, 'the Word gelds the stallion', 'white');
-	const label56 = makeLabel(18, 'once upon a time when the Word was very young, another word spoke eloquently in Its ear', 'white');
-	const label57 = makeLabel(24, 'five hours from now the Word pinches your tongue', 'white');
-	const label58 = makeLabel(36, 'a million like me, the word knows', 'white');
-	const label59 = makeLabel(72, 'Word walking, word asking', 'white');
-	const label60 = makeLabel(24, 'the word is clear and bright', 'white');
+	const label51 = new Label(64, 'the Word is wasted on them', 'white');
+	const label52 = new Label(72, 'the wurd wants to be underestimated', 'white');
+	const label53 = new Label(72, 'the word is a pattern in a spiderweb', 'white');
+	const label54 = new Label(72, 'the word is written in the blood of cartographers', 'white');
+	const label55 = new Label(32, 'the Word gelds the stallion', 'white');
+	const label56 = new Label(18, 'once upon a time when the Word was very young, another word spoke eloquently in Its ear', 'white');
+	const label57 = new Label(24, 'five hours from now the Word pinches your tongue', 'white');
+	const label58 = new Label(36, 'a million like me, the word knows', 'white');
+	const label59 = new Label(72, 'Word walking, word asking', 'white');
+	const label60 = new Label(24, 'the word is clear and bright', 'white');
 
 
     const labels = [label1, label2, label3, label4, label5, label6, label7, label8, label9, label10];
@@ -151,12 +95,11 @@ export default async function world2()
     {
         for(let i=0; i < contents.length; i++)
         {
-            contents[i].modifier = Math.random() - 0.5
-            contents[i].modifier2 = Math.random() - 0.5
-            contents[i].update = () => wordFloat(contents[i])
+            contents[i].instance.modifier = Math.random() - 0.5
+            contents[i].instance.modifier2 = Math.random() - 0.5
+            contents[i].instance.update = () => wordFloat(contents[i].instance)
 
-    
-            targetArray.push(contents[i])
+            targetArray.push(contents[i].instance)
         }
     }
 
